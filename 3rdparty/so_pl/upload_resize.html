@@ -25,7 +25,7 @@
         reader.onload = function paint_thumbnail(evt) {
             var img = new Image();
             img.src = evt.target.result;
-            canvas.getContext("2d").drawImage(image_file.getDataURL(), 0, 0, 100, 100);
+            canvas.getContext("2d").drawImage(img, 0, 0, 100, 100);
         };
         reader.onerror = function load_error() {
             console.log("Failed to load file:", arguments);
