@@ -42,7 +42,7 @@
         var xhr = new XMLHttpRequest();
         xhr.open(form.method, form.action);
         var data = new FormData();
-        data.append("image", thumbnail.getDataURL());
+        data.append("image", thumbnail.toDataURL('image/jpeg'));
         xhr.send(daata);
         xhr.onload = function() {
             form.reset();
