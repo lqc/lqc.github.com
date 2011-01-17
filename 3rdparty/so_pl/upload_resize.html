@@ -9,30 +9,47 @@
   </style>
 </head>
 <body>
-  <form method="POST" action="/upload">
+  <form id="image_form" method="POST" action="/upload">
     <input type="file" id="uploader">
+    <button type="submit" id="submit_button" disabled>
   </form>
-  <canvas id="canvas" width="100" height="100"></canvas>
+  <img id="thumbnail">
 </body>
 <script type="text/javascript">
 (function() {
-    var canvas = document.getElementById("canvas");
+    var thumbnail = document.getElementById("thumbnail");
+    var submit_button = document.getElementById("submit_button");
+    var form = document.getElementById("image_form");
+    var file_input = document.getElementById("uploader"); 
+    
     function prepare_thumbnails() {
         var image_file = this.files[0];
         var reader = new FileReader();
 
         reader.readAsDataURL(image_file);
         reader.onload = function paint_thumbnail(evt) {
-            var img = new Image();
-            img.src = evt.target.result;
-            canvas.getContext("2d").drawImage(img, 0, 0, 100, 100);
+            thumbnail.src = evt.target.result;
         };
         reader.onerror = function load_error() {
             console.log("Failed to load file:", arguments);
         }; 
     };
-    var file_input = document.getElementById("uploader"); 
+
+    function submit_form_via_ajax() {
+        var xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action);
+        var data = new FormData();
+        data.append("image", thumbnail.src.slice(5));
+        xhr.send(daata);
+        xhr.onload = function() {
+            form.reset();
+            delete thumbnail.src;
+            console.log("upload ok");
+        };
+    };
+
     file_input.onchange = prepare_thumbnails;
+    form.onsubmit = submit_form_via_ajax;
 })();
 </script>
 </html>
