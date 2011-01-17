@@ -43,7 +43,7 @@
         xhr.open(form.method, form.action);
         var data = new FormData();
         data.append("image", thumbnail.toDataURL('image/jpeg'));
-        xhr.send(daata);
+        xhr.send(data);
         xhr.onload = function() {
             form.reset();
             console.log("upload ok");
