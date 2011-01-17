@@ -11,9 +11,9 @@
 <body>
   <form id="image_form" method="POST" action="/upload">
     <input type="file" id="uploader">
-    <button type="submit" id="submit_button" disabled>
+    <button type="submit" id="submit_button"></button>
   </form>
-  <img id="thumbnail">
+  <canvas id="thumbnail"></canvas>
 </body>
 <script type="text/javascript">
 (function() {
@@ -28,7 +28,9 @@
 
         reader.readAsDataURL(image_file);
         reader.onload = function paint_thumbnail(evt) {
-            thumbnail.src = evt.target.result;
+            var img = new Image();
+            img.src = evt.target.result;
+            thumbnail.getContext('2d').drawImage(img, 0, 0, 100, 100);
         };
         reader.onerror = function load_error() {
             console.log("Failed to load file:", arguments);
@@ -39,11 +41,10 @@
         var xhr = new XMLHttpRequest();
         xhr.open(form.method, form.action);
         var data = new FormData();
-        data.append("image", thumbnail.src.slice(5));
+        data.append("image", thumbnail.getDataURL());
         xhr.send(daata);
         xhr.onload = function() {
             form.reset();
-            delete thumbnail.src;
             console.log("upload ok");
         };
     };
