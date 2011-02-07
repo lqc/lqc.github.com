@@ -508,6 +508,16 @@ del {
   opacity: 0.5;
 }
 
+dl.view-definition {
+  font-size: 32px;
+  margin-bottom: 48px;
+}
+
+dl.view-definition dt {
+  font-weight: bold;
+  color: #FFC757;
+  margin-bottom: 20px;
+}
 
 .slide:nth-child(2) h3 {
   font-size: 26px;
@@ -523,14 +533,14 @@ del {
 
 .slide:nth-child(6) {
   color: black;
-  background: black url("../../images/desert.jpg") no-repeat;
+  background: black url("images/desert.jpg") no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .slide:nth-child(9) {
   color: black;
-  background: white url("../../images/pypony.jpg") no-repeat;
+  background: white url("images/pypony.jpg") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -539,15 +549,10 @@ del {
     display: none;
 }
 
-dl.view-definition {
-  font-size: 32px;
-  margin-bottom: 48px;
-}
-
-dl.view-definition dt {
-  font-weight: bold;
-  color: #FFC757;
-  margin-bottom: 20px;
+.slide:nth-child(11) {
+  background: black url("images/green_shed.jpg") no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .slide.largelisting section {
@@ -884,7 +889,7 @@ dl.view-definition dt {
           </aside>
           
           <aside class="page_number">
-            1/14
+            1/15
           </aside>
         </footer>
       </div>
@@ -918,7 +923,7 @@ translation group for Django</em>.</p></section>
           </aside>
           
           <aside class="page_number">
-            2/14
+            2/15
           </aside>
         </footer>
       </div>
@@ -941,7 +946,7 @@ translation group for Django</em>.</p></section>
           </aside>
           
           <aside class="page_number">
-            3/14
+            3/15
           </aside>
         </footer>
       </div>
@@ -961,7 +966,7 @@ translation group for Django</em>.</p></section>
           </aside>
           
           <aside class="page_number">
-            4/14
+            4/15
           </aside>
         </footer>
       </div>
@@ -995,7 +1000,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            5/14
+            5/15
           </aside>
         </footer>
       </div>
@@ -1015,7 +1020,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            6/14
+            6/15
           </aside>
         </footer>
       </div>
@@ -1084,7 +1089,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            7/14
+            7/15
           </aside>
         </footer>
       </div>
@@ -1157,7 +1162,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            8/14
+            8/15
           </aside>
         </footer>
       </div>
@@ -1177,7 +1182,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            9/14
+            9/15
           </aside>
         </footer>
       </div>
@@ -1210,42 +1215,21 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            10/14
+            10/15
           </aside>
         </footer>
       </div>
       
-      <!-- slide source: src/class_views.md -->
+      <!-- slide source:  -->
       <div class="slide">
         <div class="inner">
           
-          <header><h1>Why OOP is good for us ?</h1></header>
-          
-          
-          <section><ul>
-<li>
-<p>Inheritance is good for code reuse as it makes overriding and extending behaviour eaiser.</p>
-</li>
-<li>
-<p>Multiply inheritance and <em>mixins</em> let you reuse even more code.</p>
-</li>
-<li>
-<p><strong>Rule #1:</strong> every time you need to make a decisions &mdash; call a method on <code>self</code>.</p>
-</li>
-<li>
-<p>But don't make too many one-line methods. Try to be flexible.</p>
-</li>
-</ul></section>
           
         </div>
         <footer>
           
-          <aside class="source">
-            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
-          </aside>
-          
           <aside class="page_number">
-            11/14
+            /15
           </aside>
         </footer>
       </div>
@@ -1259,12 +1243,13 @@ arguments from URL resolver and returns a <code>Response</code>.
           
           <section><ul>
 <li>
-<p>There are different ways to implement the base class. See: 
+<p>There are many ways to implement the base class. See: 
 <code>http://code.djangoproject.com/wiki/ClassBasedViews</code></p>
 </li>
 <li>
 <p>They all have pros and cons, but most differences are purely cosmetic. 
-This made it the major topic for bikeshedding on django&ndash;developers (~200 posts). </p>
+This made it the major topic for bikeshedding on django&ndash;developers 
+(~200 posts last year). </p>
 </li>
 </ul>
 <p>Finally, a concesus was reached:</p>
@@ -1290,7 +1275,7 @@ This made it the major topic for bikeshedding on django&ndash;developers (~200 p
           </aside>
           
           <aside class="page_number">
-            12/14
+            11/15
           </aside>
         </footer>
       </div>
@@ -1299,7 +1284,7 @@ This made it the major topic for bikeshedding on django&ndash;developers (~200 p
       <div class="slide has_code">
         <div class="inner">
           
-          <header><h1>Writing simple views</h1></header>
+          <header><h1>A simple example</h1></header>
           
           
           <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">ArticleList</span><span class="p">(</span><span class="n">View</span><span class="p">):</span>
@@ -1322,6 +1307,9 @@ This made it the major topic for bikeshedding on django&ndash;developers (~200 p
 <span class="lineno">18</span> 
 <span class="lineno">19</span>     <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="lineno">20</span>         <span class="k">return</span> <span class="n">kwargs</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span> <span class="c"># urls.py</span>
+<span class="lineno">23</span> <span class="n">url</span><span class="p">(</span><span class="s">&#39;^articles/$&#39;</span><span class="p">,</span> <span class="n">ArticleList</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">template_name</span><span class="o">=</span><span class="s">&quot;alternative.html&quot;</span><span class="p">))</span>
 </pre></div>
 </section>
           
@@ -1333,7 +1321,70 @@ This made it the major topic for bikeshedding on django&ndash;developers (~200 p
           </aside>
           
           <aside class="page_number">
-            13/14
+            12/15
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>Using mixins</h1></header>
+          
+          
+          <section><p>You can compose mixins to reuse common functionality:</p>
+<div class="highlight"><pre><span class="lineno"> 1</span> <span class="kn">from</span> <span class="nn">django.views.generic.base</span> <span class="kn">import</span> <span class="n">TemplateResponseMixin</span><span class="p">,</span> <span class="n">View</span>
+<span class="lineno"> 2</span> <span class="kn">from</span> <span class="nn">django.views.generic.list</span> <span class="kn">import</span> <span class="n">ListView</span><span class="p">,</span> <span class="n">MultipleObjectMixin</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span> <span class="k">class</span> <span class="nc">ArticleList</span><span class="p">(</span><span class="n">TemplateResponseMixin</span><span class="p">,</span> <span class="n">MultipleObjectMixin</span><span class="p">,</span> <span class="n">View</span><span class="p">):</span>
+<span class="lineno"> 5</span>     <span class="c"># from MultipleObjectMixin</span>
+<span class="lineno"> 6</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span> 
+<span class="lineno"> 7</span>     <span class="n">paginate_by</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>     <span class="c"># from TemplateResponseMixin</span>
+<span class="lineno">10</span>     <span class="n">template_name</span> <span class="o">=</span> <span class="s">&quot;articles/article_list.html&quot;</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span> <span class="k">class</span> <span class="nc">ArticleListTwo</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+<span class="lineno">13</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span> 
+<span class="lineno">14</span>     <span class="n">paginate_by</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+
+<p>You can also use mixins to override parts of views:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="k">class</span> <span class="nc">JSONArticles</span><span class="p">(</span><span class="n">JSONMixin</span><span class="p">,</span> <span class="n">ArticleList</span><span class="p">):</span>
+<span class="lineno">2</span>     <span class="k">pass</span>
+</pre></div>
+</section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            13/15
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/attributions.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Thank you !</h1></header>
+          
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/attributions.md">src/attributions.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            14/15
           </aside>
         </footer>
       </div>
@@ -1346,8 +1397,9 @@ This made it the major topic for bikeshedding on django&ndash;developers (~200 p
           
           
           <section><ul>
-<li>Slide 6, <q>Desert</q> &mdash; http://www.flickr.com/photos/gjofili/4337577836/</li>
+<li>Slide 6, <a href="http://www.flickr.com/photos/gjofili/4337577836/">Desert Track</a> (<a href="http://www.flickr.com/photos/gjofili/">Guilherme Jofili</a>) / <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></li>
 <li>Slide 9, <q>Pony <q>Magic</q></q> &mdash; Original drawing by <code>_why</code>.</li>
+<li>Slide 11, <span xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/" about="http://www.geograph.org.uk/photo/1177087"><span property="dct:title">Shed and shooting hut</span> (<a rel="cc:attributionURL" property="cc:attributionName" href="http://www.geograph.org.uk/profile/15931">Helen Wilkinson</a>) / <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></span></li>
 </ul></section>
           
         </div>
@@ -1358,7 +1410,7 @@ This made it the major topic for bikeshedding on django&ndash;developers (~200 p
           </aside>
           
           <aside class="page_number">
-            14/14
+            15/15
           </aside>
         </footer>
       </div>
@@ -1408,26 +1460,32 @@ This made it the major topic for bikeshedding on django&ndash;developers (~200 p
       
             
       <tr id="toc-row-11">
-        <th><a href="#slide11">Why OOP is good for us ?</a></th>
+        <th><a href="#slide11">The <code>View</code> class aka <code>Bikeshed</code></a></th>
         <td><a href="#slide11">11</a></td>
       </tr>
       
             
       <tr id="toc-row-12">
-        <th><a href="#slide12">The <code>View</code> class aka <code>Bikeshed</code></a></th>
+        <th><a href="#slide12">A simple example</a></th>
         <td><a href="#slide12">12</a></td>
       </tr>
       
             
       <tr id="toc-row-13">
-        <th><a href="#slide13">Writing simple views</a></th>
+        <th><a href="#slide13">Using mixins</a></th>
         <td><a href="#slide13">13</a></td>
       </tr>
       
             
       <tr id="toc-row-14">
-        <th><a href="#slide14">Attributions</a></th>
+        <th><a href="#slide14">Thank you !</a></th>
         <td><a href="#slide14">14</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Attributions</a></th>
+        <td><a href="#slide15">15</a></td>
       </tr>
       
       

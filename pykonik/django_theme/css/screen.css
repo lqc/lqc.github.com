@@ -422,6 +422,16 @@ del {
   opacity: 0.5;
 }
 
+dl.view-definition {
+  font-size: 32px;
+  margin-bottom: 48px;
+}
+
+dl.view-definition dt {
+  font-weight: bold;
+  color: #FFC757;
+  margin-bottom: 20px;
+}
 
 .slide:nth-child(2) h3 {
   font-size: 26px;
@@ -437,14 +447,14 @@ del {
 
 .slide:nth-child(6) {
   color: black;
-  background: black url("../../images/desert.jpg") no-repeat;
+  background: black url("images/desert.jpg") no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .slide:nth-child(9) {
   color: black;
-  background: white url("../../images/pypony.jpg") no-repeat;
+  background: white url("images/pypony.jpg") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -453,15 +463,10 @@ del {
     display: none;
 }
 
-dl.view-definition {
-  font-size: 32px;
-  margin-bottom: 48px;
-}
-
-dl.view-definition dt {
-  font-weight: bold;
-  color: #FFC757;
-  margin-bottom: 20px;
+.slide:nth-child(11) {
+  background: black url("images/green_shed.jpg") no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .slide.largelisting section {

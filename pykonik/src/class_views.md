@@ -18,25 +18,16 @@ In Python, any object with a `__call__` attribute is a *Callable*, e.g:
 
 ----
 
-# Why OOP is good for us ?
-
-* Inheritance is good for code reuse as it makes overriding and extending behaviour eaiser.
-
-* Multiply inheritance and _mixins_ let you reuse even more code.
-
-* **Rule #1:** every time you need to make a decisions &mdash; call a method on `self`.
-
-* But don't make too many one-line methods. Try to be flexible.
-
 ----
 
 # The `View` class aka `Bikeshed` 
 
-* There are different ways to implement the base class. See: 
+* There are many ways to implement the base class. See: 
 `http://code.djangoproject.com/wiki/ClassBasedViews`
 
 * They all have pros and cons, but most differences are purely cosmetic. 
-This made it the major topic for bikeshedding on django&ndash;developers (~200 posts). 
+This made it the major topic for bikeshedding on django&ndash;developers 
+(~200 posts last year). 
 
 Finally, a concesus was reached:
 
@@ -56,7 +47,7 @@ Finally, a concesus was reached:
 
 ----
 
-# Writing simple views
+# A simple example
 
 
     !python
@@ -80,4 +71,34 @@ Finally, a concesus was reached:
 
         def get_context_data(self, **kwargs):
             return kwargs
-        
+    
+    # urls.py
+    url('^articles/$', ArticleList.as_view(template_name="alternative.html"))
+
+----
+
+# Using mixins
+
+You can compose mixins to reuse common functionality:
+
+    !python
+    from django.views.generic.base import TemplateResponseMixin, View
+    from django.views.generic.list import ListView, MultipleObjectMixin
+
+    class ArticleList(TemplateResponseMixin, MultipleObjectMixin, View):
+        # from MultipleObjectMixin
+        model = Article 
+        paginate_by = 15
+
+        # from TemplateResponseMixin
+        template_name = "articles/article_list.html" 
+
+    class ArticleListTwo(ListView):
+        model = Article 
+        paginate_by = 15
+
+You can also use mixins to override parts of views:
+
+    !python
+    class JSONArticles(JSONMixin, ArticleList):
+        pass
