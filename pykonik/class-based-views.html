@@ -34,43 +34,268 @@
           </aside>
           
           <aside class="page_number">
-            1/3
+            1/14
           </aside>
         </footer>
       </div>
       
-      <!-- slide source: src/class-based-views.md -->
+      <!-- slide source: src/intro.md -->
       <div class="slide">
         <div class="inner">
           
           <header><h1>About Me</h1></header>
           
           
-          <section><ul>
-<li>My name is Łukasz Rekucki </li>
-<li>You can contact me at: lrekucki@gmail.com</li>
-</ul></section>
+          <section><h3>2004-2009:</h3>
+<p>Student at University of Warsaw (MISMaP): Computer Science and Mathematics.</p>
+<h3>Around 2008/2009</h3>
+<p>Got sucked into Django world (thanks to Marek Stępniowski) to work on
+open-source project <a href="http://www.wolnelektury.pl/"><strong>Wolnelektury.pl</strong></a>.</p>
+<h3>March 2010</h3>
+<p>Joined a promising polish start-up called <a href="http://www.smartupz.com/"><strong>Smartupz.com</strong></a>.</p>
+<h3>August 2010</h3>
+<p>My first patch got commited to Django code base. Yey! </p>
+<h3>Now</h3>
+<p>Still working at Smartupz. Trying to get more patches in so that may 
+daily work is easier. <em>Looking for someone to manage Polish 
+translation group for Django</em>.</p></section>
           
         </div>
         <footer>
           
           <aside class="source">
-            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class-based-views.md">src/class-based-views.md</a>
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/intro.md">src/intro.md</a>
           </aside>
           
           <aside class="page_number">
-            2/3
+            2/14
           </aside>
         </footer>
       </div>
       
-      <!-- slide source: src/class-based-views.md -->
-      <div class="slide has_code">
+      <!-- slide source: src/intro.md -->
+      <div class="slide has_notes">
+        <div class="inner">
+          
+          <header><h1>More Adverts ;)</h1></header>
+          
+          
+          <section><p align="center"><img src="file:///home/lrekucki/github_page/pykonik/src/../images/show_home_bg.jpg" />
+<p class="notes">Make a quick note about who paid for the trip.</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/intro.md">src/intro.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            3/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/dry_views.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>What is a view ?</h1></header>
+          
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/dry_views.md">src/dry_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            4/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/dry_views.md -->
+      <div class="slide has_code has_notes">
         <div class="inner">
           
           
-          <section><div class="highlight"><pre><span class="lineno">1</span> <span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="lineno">2</span>     <span class="k">pass</span>
+          <section><dl class="view-definition">
+<dt>view (n.):</dt>
+<dd>
+Function that takes a <code>Request</code> together with 
+arguments from URL resolver and returns a <code>Response</code>.
+</dd>
+</dl>
+
+<div class="highlight"><pre><span class="lineno">1</span> <span class="k">def</span> <span class="nf">article_list</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="lineno">2</span>     <span class="n">articles</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="lineno">3</span>     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;article_list.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;articles&quot;</span><span class="p">:</span> <span class="n">articles</span><span class="p">},</span> 
+<span class="lineno">4</span>                <span class="n">context_instance</span><span class="o">=</span><span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+</pre></div>
+
+<p class="notes">Talk about how to extend this view to be more reusable</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/dry_views.md">src/dry_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            5/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/dry_views.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Be DRY!</h1></header>
+          
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/dry_views.md">src/dry_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            6/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/dry_views.md -->
+      <div class="slide has_code largelisting listing50  has_notes">
+        <div class="inner">
+          
+          
+          <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">def</span> <span class="nf">object_list</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">paginate_by</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+<span class="lineno"> 2</span>         <span class="n">allow_empty</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">template_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">template_loader</span><span class="o">=</span><span class="n">loader</span><span class="p">,</span>
+<span class="lineno"> 3</span>         <span class="n">extra_context</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">context_processors</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">template_object_name</span><span class="o">=</span><span class="s">&#39;object&#39;</span><span class="p">,</span>
+<span class="lineno"> 4</span>         <span class="n">mimetype</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="lineno"> 5</span>     <span class="k">if</span> <span class="n">extra_context</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="n">extra_context</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="lineno"> 6</span>     <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">_clone</span><span class="p">()</span>
+<span class="lineno"> 7</span>     <span class="k">if</span> <span class="n">paginate_by</span><span class="p">:</span>
+<span class="lineno"> 8</span>         <span class="n">paginator</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">queryset</span><span class="p">,</span> <span class="n">paginate_by</span><span class="p">,</span> <span class="n">allow_empty_first_page</span><span class="o">=</span><span class="n">allow_empty</span><span class="p">)</span>
+<span class="lineno"> 9</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">page</span><span class="p">:</span>
+<span class="lineno">10</span>             <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="lineno">11</span>         <span class="k">try</span><span class="p">:</span>
+<span class="lineno">12</span>             <span class="n">page_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+<span class="lineno">13</span>         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+<span class="lineno">14</span>             <span class="k">if</span> <span class="n">page</span> <span class="o">==</span> <span class="s">&#39;last&#39;</span><span class="p">:</span>
+<span class="lineno">15</span>                 <span class="n">page_number</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">num_pages</span>
+<span class="lineno">16</span>             <span class="k">else</span><span class="p">:</span>
+<span class="lineno">17</span>                 <span class="c"># Page is not &#39;last&#39;, nor can it be converted to an int.</span>
+<span class="lineno">18</span>                 <span class="k">raise</span> <span class="n">Http404</span>
+<span class="lineno">19</span>         <span class="k">try</span><span class="p">:</span>
+<span class="lineno">20</span>             <span class="n">page_obj</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">page_number</span><span class="p">)</span>
+<span class="lineno">21</span>         <span class="k">except</span> <span class="n">InvalidPage</span><span class="p">:</span>
+<span class="lineno">22</span>             <span class="k">raise</span> <span class="n">Http404</span>
+<span class="lineno">23</span>         <span class="n">c</span> <span class="o">=</span> <span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="p">{</span>
+<span class="lineno">24</span>             <span class="s">&#39;</span><span class="si">%s</span><span class="s">_list&#39;</span> <span class="o">%</span> <span class="n">template_object_name</span><span class="p">:</span> <span class="n">page_obj</span><span class="o">.</span><span class="n">object_list</span><span class="p">,</span>
+<span class="lineno">25</span>             <span class="s">&#39;paginator&#39;</span><span class="p">:</span> <span class="n">paginator</span><span class="p">,</span>
+<span class="lineno">26</span>             <span class="s">&#39;page_obj&#39;</span><span class="p">:</span> <span class="n">page_obj</span><span class="p">,</span>
+<span class="lineno">27</span>             <span class="s">&#39;is_paginated&#39;</span><span class="p">:</span> <span class="n">page_obj</span><span class="o">.</span><span class="n">has_other_pages</span><span class="p">(),</span>
+<span class="lineno">28</span>         <span class="p">},</span> <span class="n">context_processors</span><span class="p">)</span>
+<span class="lineno">29</span>     <span class="k">else</span><span class="p">:</span>
+<span class="lineno">30</span>         <span class="n">c</span> <span class="o">=</span> <span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="p">{</span>
+<span class="lineno">31</span>             <span class="s">&#39;</span><span class="si">%s</span><span class="s">_list&#39;</span> <span class="o">%</span> <span class="n">template_object_name</span><span class="p">:</span> <span class="n">queryset</span><span class="p">,</span>
+<span class="lineno">32</span>             <span class="s">&#39;paginator&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+<span class="lineno">33</span>             <span class="s">&#39;page_obj&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+<span class="lineno">34</span>             <span class="s">&#39;is_paginated&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+<span class="lineno">35</span>         <span class="p">},</span> <span class="n">context_processors</span><span class="p">)</span>
+<span class="lineno">36</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_empty</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="lineno">37</span>             <span class="k">raise</span> <span class="n">Http404</span>
+<span class="lineno">38</span>     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">extra_context</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="lineno">39</span>         <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="lineno">40</span>             <span class="n">c</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">()</span>
+<span class="lineno">41</span>         <span class="k">else</span><span class="p">:</span>
+<span class="lineno">42</span>             <span class="n">c</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="lineno">43</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">template_name</span><span class="p">:</span>
+<span class="lineno">44</span>         <span class="n">model</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">model</span>
+<span class="lineno">45</span>         <span class="n">template_name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">_list.html&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">app_label</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">object_name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="lineno">46</span>     <span class="n">t</span> <span class="o">=</span> <span class="n">template_loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">template_name</span><span class="p">)</span>
+<span class="lineno">47</span>     <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">mimetype</span><span class="o">=</span><span class="n">mimetype</span><span class="p">)</span>
+</pre></div>
+
+<p class="notes">Talk about how this view is incomplete: different Paginator, Jinja2 templates, GET field for page.</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/dry_views.md">src/dry_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            7/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/dry_views.md -->
+      <div class="slide has_code largelisting">
+        <div class="inner">
+          
+          
+          <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">def</span> <span class="nf">twitter_login_done</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="lineno"> 2</span>     <span class="n">request_token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;request_token&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="lineno"> 3</span>     <span class="n">verifier</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;oauth_verifier&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="lineno"> 4</span>     <span class="n">denied</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;denied&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>     <span class="c"># If we&#39;ve been denied, put them back to the signin page</span>
+<span class="lineno"> 7</span>     <span class="c"># They probably meant to sign in with facebook &gt;:D</span>
+<span class="lineno"> 8</span>     <span class="k">if</span> <span class="n">denied</span><span class="p">:</span>
+<span class="lineno"> 9</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>     <span class="c"># If there is no request_token for session,</span>
+<span class="lineno">12</span>     <span class="c"># Means we didn&#39;t redirect user to twitter</span>
+<span class="lineno">13</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">request_token</span><span class="p">:</span>
+<span class="lineno">14</span>         <span class="c"># Redirect the user to the login page,</span>
+<span class="lineno">15</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span>     <span class="n">token</span> <span class="o">=</span> <span class="n">oauth</span><span class="o">.</span><span class="n">Token</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">request_token</span><span class="p">)</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span>     <span class="c"># If the token from session and token from twitter does not match</span>
+<span class="lineno">20</span>     <span class="c"># means something bad happened to tokens</span>
+<span class="lineno">21</span>     <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">key</span> <span class="o">!=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;oauth_token&#39;</span><span class="p">,</span> <span class="s">&#39;no-token&#39;</span><span class="p">):</span>
+<span class="lineno">22</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;request_token&#39;</span><span class="p">)</span>
+<span class="lineno">23</span>         <span class="c"># Redirect the user to the login page</span>
+<span class="lineno">24</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
+<span class="lineno">25</span> 
+<span class="lineno">26</span>     <span class="k">try</span><span class="p">:</span>
+<span class="lineno">27</span>         <span class="n">twitter</span> <span class="o">=</span> <span class="n">oauthtwitter</span><span class="o">.</span><span class="n">TwitterOAuthClient</span><span class="p">(</span><span class="n">TWITTER_CONSUMER_KEY</span><span class="p">,</span> 
+<span class="lineno">28</span>                                                   <span class="n">TWITTER_CONSUMER_SECRET</span><span class="p">)</span>
+<span class="lineno">29</span>         <span class="n">access_token</span> <span class="o">=</span> <span class="n">twitter</span><span class="o">.</span><span class="n">fetch_access_token</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">verifier</span><span class="p">)</span>
+<span class="lineno">30</span> 
+<span class="lineno">31</span>         <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s">&#39;access_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+<span class="lineno">32</span>         <span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">twitter_access_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">)</span>
+<span class="lineno">33</span>     <span class="k">except</span><span class="p">:</span>
+<span class="lineno">34</span>         <span class="n">user</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="lineno">35</span> 
+<span class="lineno">36</span>     <span class="c"># if user is authenticated then login user</span>
+<span class="lineno">37</span>     <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+<span class="lineno">38</span>         <span class="n">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+<span class="lineno">39</span>     <span class="k">else</span><span class="p">:</span>
+<span class="lineno">40</span>         <span class="c"># We were not able to authenticate user</span>
+<span class="lineno">41</span>         <span class="c"># Redirect to login page</span>
+<span class="lineno">42</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;access_token&#39;</span><span class="p">)</span>
+<span class="lineno">43</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;request_token&#39;</span><span class="p">)</span>
+<span class="lineno">44</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;socialauth_login_page&#39;</span><span class="p">))</span>
+<span class="lineno">45</span> 
+<span class="lineno">46</span>     <span class="c"># authentication was successful, use is now logged in</span>
+<span class="lineno">47</span>     <span class="nb">next</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;twitter_login_next&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="lineno">48</span>     <span class="k">if</span> <span class="nb">next</span><span class="p">:</span>
+<span class="lineno">49</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;twitter_login_next&#39;</span><span class="p">)</span>
+<span class="lineno">50</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span>
+<span class="lineno">51</span>     <span class="k">else</span><span class="p">:</span>
+<span class="lineno">52</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">LOGIN_REDIRECT_URL</span><span class="p">)</span>
 </pre></div>
 </section>
           
@@ -78,11 +303,212 @@
         <footer>
           
           <aside class="source">
-            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class-based-views.md">src/class-based-views.md</a>
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/dry_views.md">src/dry_views.md</a>
           </aside>
           
           <aside class="page_number">
-            3/3
+            8/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Pony <q>Magic</q></h1></header>
+          
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            9/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          
+          <section><dl class="view-definition">
+<dt>view (n.):</dt>
+<dd>
+<del>Function</del> <ins>Callable</ins> that takes a <code>Request</code> together with 
+arguments from URL resolver and returns a <code>Response</code>.
+</dd>
+</dl>
+
+<p>In Python, any object with a <code>__call__</code> attribute is a <em>Callable</em>, e.g: </p>
+<ul>
+<li>a function</li>
+<li>a class</li>
+<li>instance of a class with <code>__call__</code> method</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            10/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Why OOP is good for us ?</h1></header>
+          
+          
+          <section><ul>
+<li>
+<p>Inheritance is good for code reuse as it makes overriding and extending behaviour eaiser.</p>
+</li>
+<li>
+<p>Multiply inheritance and <em>mixins</em> let you reuse even more code.</p>
+</li>
+<li>
+<p><strong>Rule #1:</strong> every time you need to make a decisions &mdash; call a method on <code>self</code>.</p>
+</li>
+<li>
+<p>But don't make too many one-line methods. Try to be flexible.</p>
+</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            11/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>The <code>View</code> class aka <code>Bikeshed</code></h1></header>
+          
+          
+          <section><ul>
+<li>
+<p>There are different ways to implement the base class. See: 
+<code>http://code.djangoproject.com/wiki/ClassBasedViews</code></p>
+</li>
+<li>
+<p>They all have pros and cons, but most differences are purely cosmetic. 
+This made it the major topic for bikeshedding on django&ndash;developers (~200 posts). </p>
+</li>
+</ul>
+<p>Finally, a concesus was reached:</p>
+<div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span>     <span class="nd">@classmethod</span>
+<span class="lineno"> 4</span>     <span class="k">def</span> <span class="nf">as_view</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">initargs</span><span class="p">):</span>
+<span class="lineno"> 5</span>         <span class="k">def</span> <span class="nf">real_view</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="lineno"> 6</span>             <span class="n">instance</span> <span class="o">=</span> <span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="n">initargs</span><span class="p">)</span>
+<span class="lineno"> 7</span>             <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="lineno"> 8</span>         <span class="k">return</span> <span class="n">real_view</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="c"># urls.py</span>
+<span class="lineno">11</span> <span class="n">url</span><span class="p">(</span><span class="s">&#39;^sample-view/$&#39;</span><span class="p">,</span> <span class="n">View</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;sample_view&quot;</span><span class="p">)</span>
+</pre></div>
+</section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            12/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>Writing simple views</h1></header>
+          
+          
+          <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">ArticleList</span><span class="p">(</span><span class="n">View</span><span class="p">):</span>
+<span class="lineno"> 2</span>     <span class="n">template_name</span> <span class="o">=</span> <span class="s">&quot;article_list.html&quot;</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">article_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+<span class="lineno"> 6</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_to_response</span><span class="p">(</span>
+<span class="lineno"> 7</span>             <span class="bp">self</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="n">articles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">article_list</span><span class="p">))</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>     <span class="k">def</span> <span class="nf">render_to_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<span class="lineno">10</span>         <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_template_names</span><span class="p">(),</span>
+<span class="lineno">11</span>             <span class="n">context</span><span class="p">,</span> <span class="n">RequestContext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">))</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span>     <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="lineno">14</span>         <span class="k">return</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span>     <span class="k">def</span> <span class="nf">get_template_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="lineno">17</span>         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">template_name</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="p">[]</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span>     <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="lineno">20</span>         <span class="k">return</span> <span class="n">kwargs</span>
+</pre></div>
+</section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            13/14
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/attributions.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Attributions</h1></header>
+          
+          
+          <section><ul>
+<li>Slide 6, <q>Desert</q> &mdash; http://www.flickr.com/photos/gjofili/4337577836/</li>
+<li>Slide 9, <q>Pony <q>Magic</q></q> &mdash; Original drawing by <code>_why</code>.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/attributions.md">src/attributions.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            14/14
           </aside>
         </footer>
       </div>
@@ -104,6 +530,54 @@
       <tr id="toc-row-2">
         <th><a href="#slide2">About Me</a></th>
         <td><a href="#slide2">2</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-3">
+        <th><a href="#slide3">More Adverts ;)</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-4">
+        <th><a href="#slide4">What is a view ?</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-6">
+        <th><a href="#slide6">Be DRY!</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Pony <q>Magic</q></a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Why OOP is good for us ?</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-12">
+        <th><a href="#slide12">The <code>View</code> class aka <code>Bikeshed</code></a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-13">
+        <th><a href="#slide13">Writing simple views</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-14">
+        <th><a href="#slide14">Attributions</a></th>
+        <td><a href="#slide14">14</a></td>
       </tr>
       
       
