@@ -118,7 +118,7 @@ All function-based views have been migrated to <abbr title="Class-based Views">C
   * `archive_year` &rarr; `YearArchiveView`
   * etc.
 
-Toghether with some useful mixins, e.g:
+Together with some useful mixins, e.g:
 
   * `FormMixin` - form validation methods
   * `ModelFormMixin` - extends `FormMixin` to work with ModelForms.
