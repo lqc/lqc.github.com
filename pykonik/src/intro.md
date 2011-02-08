@@ -19,10 +19,8 @@ My first patch got commited to Django code base. Yey!
 
 ### Now
 
-Still working at Smartupz. Trying to get more patches in so that may 
-daily work is easier. *Looking for someone to manage Polish 
-translation group for Django*.
-
+Still working at Smartupz. Trying to get more patches in so that my 
+daily work is easier. 
 
 ----
 
