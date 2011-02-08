@@ -469,6 +469,19 @@ dl.view-definition dt {
   background-position: center;
 }
 
+.slide:nth-child(16) {
+  color: white;
+  background: black url("images/cake_decorator.jpg") no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.slide:nth-child(16) header h1 {
+  position: absolute;
+  text-align: left;
+}
+
+
 .slide.largelisting section {
     margin: 30px; 
 }

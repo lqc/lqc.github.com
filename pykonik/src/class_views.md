@@ -86,19 +86,40 @@ You can compose mixins to reuse common functionality:
     from django.views.generic.list import ListView, MultipleObjectMixin
 
     class ArticleList(TemplateResponseMixin, MultipleObjectMixin, View):
-        # from MultipleObjectMixin
         model = Article 
-        paginate_by = 15
-
-        # from TemplateResponseMixin
         template_name = "articles/article_list.html" 
 
+        def get(self, request, *args, **kwargs):
+            self.object_list = self.get_queryset()
+            context = self.get_context_data(object_list=self.object_list)
+            return self.render_to_response(context)
+
+    
     class ArticleListTwo(ListView):
         model = Article 
-        paginate_by = 15
 
-You can also use mixins to override parts of views:
+You can also use mixins to override functionality:
 
     !python
     class JSONArticles(JSONMixin, ArticleList):
         pass
+
+----
+
+# More generic views
+
+All function-based views have been migrated to <abbr title="Class-based Views">CBVs</abbr>.
+
+  * `direct_to_template` &rarr; `TemplateView`
+  * `redirect_to` &rarr; `RedirectView`
+  * `object_list` &rarr; `ListView`
+  * `object_detail` &rarr; `DetailView` 
+  * `create_object` &rarr; `CreateView`  
+  * `archive_year` &rarr; `YearArchiveView`
+  * etc.
+
+Toghether with some useful mixins, e.g:
+
+  * `FormMixin` - form validation methods
+  * `ModelFormMixin` - extends `FormMixin` to work with ModelForms.
+

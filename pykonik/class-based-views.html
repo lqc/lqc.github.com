@@ -555,6 +555,19 @@ dl.view-definition dt {
   background-position: center;
 }
 
+.slide:nth-child(16) {
+  color: white;
+  background: black url("images/cake_decorator.jpg") no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.slide:nth-child(16) header h1 {
+  position: absolute;
+  text-align: left;
+}
+
+
 .slide.largelisting section {
     margin: 30px; 
 }
@@ -889,7 +902,7 @@ dl.view-definition dt {
           </aside>
           
           <aside class="page_number">
-            1/15
+            1/22
           </aside>
         </footer>
       </div>
@@ -923,7 +936,7 @@ translation group for Django</em>.</p></section>
           </aside>
           
           <aside class="page_number">
-            2/15
+            2/22
           </aside>
         </footer>
       </div>
@@ -946,7 +959,7 @@ translation group for Django</em>.</p></section>
           </aside>
           
           <aside class="page_number">
-            3/15
+            3/22
           </aside>
         </footer>
       </div>
@@ -966,7 +979,7 @@ translation group for Django</em>.</p></section>
           </aside>
           
           <aside class="page_number">
-            4/15
+            4/22
           </aside>
         </footer>
       </div>
@@ -1000,7 +1013,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            5/15
+            5/22
           </aside>
         </footer>
       </div>
@@ -1020,7 +1033,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            6/15
+            6/22
           </aside>
         </footer>
       </div>
@@ -1089,7 +1102,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            7/15
+            7/22
           </aside>
         </footer>
       </div>
@@ -1162,7 +1175,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            8/15
+            8/22
           </aside>
         </footer>
       </div>
@@ -1182,7 +1195,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            9/15
+            9/22
           </aside>
         </footer>
       </div>
@@ -1215,7 +1228,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            10/15
+            10/22
           </aside>
         </footer>
       </div>
@@ -1229,7 +1242,7 @@ arguments from URL resolver and returns a <code>Response</code>.
         <footer>
           
           <aside class="page_number">
-            /15
+            /22
           </aside>
         </footer>
       </div>
@@ -1275,7 +1288,7 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            11/15
+            11/22
           </aside>
         </footer>
       </div>
@@ -1321,7 +1334,7 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            12/15
+            12/22
           </aside>
         </footer>
       </div>
@@ -1338,19 +1351,19 @@ This made it the major topic for bikeshedding on django&ndash;developers
 <span class="lineno"> 2</span> <span class="kn">from</span> <span class="nn">django.views.generic.list</span> <span class="kn">import</span> <span class="n">ListView</span><span class="p">,</span> <span class="n">MultipleObjectMixin</span>
 <span class="lineno"> 3</span> 
 <span class="lineno"> 4</span> <span class="k">class</span> <span class="nc">ArticleList</span><span class="p">(</span><span class="n">TemplateResponseMixin</span><span class="p">,</span> <span class="n">MultipleObjectMixin</span><span class="p">,</span> <span class="n">View</span><span class="p">):</span>
-<span class="lineno"> 5</span>     <span class="c"># from MultipleObjectMixin</span>
-<span class="lineno"> 6</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span> 
-<span class="lineno"> 7</span>     <span class="n">paginate_by</span> <span class="o">=</span> <span class="mi">15</span>
-<span class="lineno"> 8</span> 
-<span class="lineno"> 9</span>     <span class="c"># from TemplateResponseMixin</span>
-<span class="lineno">10</span>     <span class="n">template_name</span> <span class="o">=</span> <span class="s">&quot;articles/article_list.html&quot;</span>
-<span class="lineno">11</span> 
-<span class="lineno">12</span> <span class="k">class</span> <span class="nc">ArticleListTwo</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
-<span class="lineno">13</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span> 
-<span class="lineno">14</span>     <span class="n">paginate_by</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="lineno"> 5</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span> 
+<span class="lineno"> 6</span>     <span class="n">template_name</span> <span class="o">=</span> <span class="s">&quot;articles/article_list.html&quot;</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="lineno"> 9</span>         <span class="bp">self</span><span class="o">.</span><span class="n">object_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+<span class="lineno">10</span>         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="n">object_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">object_list</span><span class="p">)</span>
+<span class="lineno">11</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_to_response</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="k">class</span> <span class="nc">ArticleListTwo</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+<span class="lineno">14</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
 </pre></div>
 
-<p>You can also use mixins to override parts of views:</p>
+<p>You can also use mixins to override functionality:</p>
 <div class="highlight"><pre><span class="lineno">1</span> <span class="k">class</span> <span class="nc">JSONArticles</span><span class="p">(</span><span class="n">JSONMixin</span><span class="p">,</span> <span class="n">ArticleList</span><span class="p">):</span>
 <span class="lineno">2</span>     <span class="k">pass</span>
 </pre></div>
@@ -1364,7 +1377,215 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            13/15
+            13/22
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>More generic views</h1></header>
+          
+          
+          <section><p>All function-based views have been migrated to <abbr title="Class-based Views">CBVs</abbr>.</p>
+<ul>
+<li><code>direct_to_template</code> &rarr; <code>TemplateView</code></li>
+<li><code>redirect_to</code> &rarr; <code>RedirectView</code></li>
+<li><code>object_list</code> &rarr; <code>ListView</code></li>
+<li><code>object_detail</code> &rarr; <code>DetailView</code> </li>
+<li><code>create_object</code> &rarr; <code>CreateView</code><br />
+</li>
+<li><code>archive_year</code> &rarr; <code>YearArchiveView</code></li>
+<li>etc.</li>
+</ul>
+<p>Toghether with some useful mixins, e.g:</p>
+<ul>
+<li><code>FormMixin</code> - form validation methods</li>
+<li><code>ModelFormMixin</code> - extends <code>FormMixin</code> to work with ModelForms.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            14/22
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/decorating.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Decorating</h1></header>
+          
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/decorating.md">src/decorating.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            15/22
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/decorating.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>In URLconf</h1></header>
+          
+          
+          <section><p>Because the <code>as_view()</code> method produces an ordinary function, you can 
+apply function decorators to the result:</p>
+<br>
+
+<div class="highlight"><pre><span class="lineno">1</span> <span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">TemplateView</span>
+<span class="lineno">2</span> <span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+<span class="lineno">3</span> 
+<span class="lineno">4</span> <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^/protected/$&#39;</span><span class="p">,</span> <span class="n">login_required</span><span class="p">(</span>
+<span class="lineno">5</span>         <span class="n">TemplateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">template_name</span><span class="o">=</span><span class="s">&quot;secret.html&quot;</span><span class="p">)))</span>
+</pre></div>
+
+<br>
+
+<p>This is simple, but after decorating you're left with a function, 
+so subclassing is not possible.</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/decorating.md">src/decorating.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            16/22
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/decorating.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>Decorating methods</h1></header>
+          
+          
+          <section><p>Django provides an easy way to create method decorators:</p>
+<br>
+
+<div class="highlight"><pre><span class="lineno">1</span> <span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">method_decorator</span>
+<span class="lineno">2</span> 
+<span class="lineno">3</span> <span class="k">class</span> <span class="nc">ProtectedView</span><span class="p">(</span><span class="n">View</span><span class="p">):</span>
+<span class="lineno">4</span> 
+<span class="lineno">5</span>     <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">):</span>
+<span class="lineno">6</span>     <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="lineno">7</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">ProtectedView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+<br>
+
+<p><em>Note:</em> Any attributes on <code>dispatch()</code> will get copied 
+to the function returned by <code>as_view()</code>, so that <code>csrf_exempt</code> decorator works correctly.</p>
+<p>You can also decorate <code>get()</code>, <code>post()</code>, <code>put()</code> and <code>delete()</code> this way, but 
+<code>csrf_exempt</code> won't work with those methods.</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/decorating.md">src/decorating.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            17/22
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/decorating.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>Class decorators</h1></header>
+          
+          
+          <section><p>This actually didn't make it to Django 1.3, but I think it's very 
+useful (requires Python 2.6):</p>
+<div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">def</span> <span class="nf">view_decorator</span><span class="p">(</span><span class="n">fdec</span><span class="p">)</span>
+<span class="lineno"> 2</span>     <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+<span class="lineno"> 3</span>         <span class="n">original</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">as_view</span><span class="o">.</span><span class="n">im_func</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span>         <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="k">def</span> <span class="nf">as_view</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="o">**</span><span class="n">initkwargs</span><span class="p">):</span>
+<span class="lineno"> 7</span>             <span class="k">return</span> <span class="n">fdec</span><span class="p">(</span><span class="n">original</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="o">**</span><span class="n">initkwargs</span><span class="p">))</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>         <span class="n">cls</span><span class="o">.</span><span class="n">as_view</span> <span class="o">=</span> <span class="nb">classmethod</span><span class="p">(</span><span class="n">as_view</span><span class="p">)</span> 
+<span class="lineno">10</span>         <span class="k">return</span> <span class="n">cls</span>
+<span class="lineno">11</span>     <span class="k">return</span> <span class="n">decorator</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="c"># usage:</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span> <span class="nd">@view_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
+<span class="lineno">16</span> <span class="k">class</span> <span class="nc">ProtectedView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+<span class="lineno">17</span>     <span class="k">pass</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span> <span class="c"># but **DO NOT** do this:</span>
+<span class="lineno">20</span> 
+<span class="lineno">21</span> <span class="n">ProtectedView</span> <span class="o">=</span> <span class="n">view_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)(</span><span class="n">TemplateView</span><span class="p">)</span>
+</pre></div>
+</section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/decorating.md">src/decorating.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            18/22
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/decorating.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Decorators vs. Mixins</h1></header>
+          
+          
+          <section><ul>
+<li>Both provide a way to add functionality in a reusable way.</li>
+<li>Decorators can't be overriden or extended, so you shouldn't use them in generic views.</li>
+<li>Mixins are not a very widely used concept in Python world and requires knowledge about MRO (Method Resolution Order).</li>
+<li>Neither are class decorators (Python 2.6+)</li>
+<li>Mixins don't work with function-based views. If you're writing a reusable application, 
+you want to provide a decorator too.</li>
+</ul>
+<p>There are no strict rules when to use one over other. </p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/decorating.md">src/decorating.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            19/22
           </aside>
         </footer>
       </div>
@@ -1384,7 +1605,7 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            14/15
+            20/22
           </aside>
         </footer>
       </div>
@@ -1397,9 +1618,10 @@ This made it the major topic for bikeshedding on django&ndash;developers
           
           
           <section><ul>
-<li>Slide 6, <a href="http://www.flickr.com/photos/gjofili/4337577836/">Desert Track</a> (<a href="http://www.flickr.com/photos/gjofili/">Guilherme Jofili</a>) / <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></li>
-<li>Slide 9, <q>Pony <q>Magic</q></q> &mdash; Original drawing by <code>_why</code>.</li>
-<li>Slide 11, <span xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/" about="http://www.geograph.org.uk/photo/1177087"><span property="dct:title">Shed and shooting hut</span> (<a rel="cc:attributionURL" property="cc:attributionName" href="http://www.geograph.org.uk/profile/15931">Helen Wilkinson</a>) / <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></span></li>
+<li><a href="http://www.flickr.com/photos/gjofili/4337577836/">Desert Track</a> (<a href="http://www.flickr.com/photos/gjofili/">Guilherme Jofili</a>) / <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></li>
+<li>Pony Magic &mdash; Original drawing by <code>_why</code>.</li>
+<li><span xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/" about="http://www.geograph.org.uk/photo/1177087"><span property="dct:title">Shed and shooting hut</span> (<a rel="cc:attributionURL" property="cc:attributionName" href="http://www.geograph.org.uk/profile/15931">Helen Wilkinson</a>) / <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></span></li>
+<li><a href="http://shiftingpixel.com/2006/08/25/duo-color-cake-decorator/">Duo-Color Cake Decorator</a> (<a href="http://shiftingpixel.com" title="Shifting Pixel, Joe Lencioni's photography">Joe Lencioni</a>) / <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/">CC BY-NC-SA 2.5</a></li>
 </ul></section>
           
         </div>
@@ -1410,7 +1632,27 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            15/15
+            21/22
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/attributions.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          
+          <section><p>Questions ?</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/attributions.md">src/attributions.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            22/22
           </aside>
         </footer>
       </div>
@@ -1478,14 +1720,50 @@ This made it the major topic for bikeshedding on django&ndash;developers
       
             
       <tr id="toc-row-14">
-        <th><a href="#slide14">Thank you !</a></th>
+        <th><a href="#slide14">More generic views</a></th>
         <td><a href="#slide14">14</a></td>
       </tr>
       
             
       <tr id="toc-row-15">
-        <th><a href="#slide15">Attributions</a></th>
+        <th><a href="#slide15">Decorating</a></th>
         <td><a href="#slide15">15</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-16">
+        <th><a href="#slide16">In URLconf</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Decorating methods</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Class decorators</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Decorators vs. Mixins</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Thank you !</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-21">
+        <th><a href="#slide21">Attributions</a></th>
+        <td><a href="#slide21">21</a></td>
       </tr>
       
       
