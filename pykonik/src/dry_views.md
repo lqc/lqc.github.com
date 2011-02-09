@@ -87,37 +87,29 @@ arguments from URL resolver and returns a <code>Response</code>.
         request_token = request.session.get('request_token', None)
         verifier = request.GET.get('oauth_verifier', None)
         denied = request.GET.get('denied', None)
-        
         # If we've been denied, put them back to the signin page
         # They probably meant to sign in with facebook >:D
         if denied:
             return HttpResponseRedirect(reverse("socialauth_login_page"))
-    
         # If there is no request_token for session,
         # Means we didn't redirect user to twitter
         if not request_token:
             # Redirect the user to the login page,
             return HttpResponseRedirect(reverse("socialauth_login_page"))
-
         token = oauth.Token.from_string(request_token)
-    
         # If the token from session and token from twitter does not match
         # means something bad happened to tokens
         if token.key != request.GET.get('oauth_token', 'no-token'):
             del_dict_key(request.session, 'request_token')
             # Redirect the user to the login page
             return HttpResponseRedirect(reverse("socialauth_login_page"))
-    
         try:
-            twitter = oauthtwitter.TwitterOAuthClient(TWITTER_CONSUMER_KEY, 
-                                                      TWITTER_CONSUMER_SECRET)
+            twitter = oauthtwitter.TwitterOAuthClient(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
             access_token = twitter.fetch_access_token(token, verifier)
-    
             request.session['access_token'] = access_token.to_string()
             user = authenticate(twitter_access_token=access_token)
         except:
             user = None
-      
         # if user is authenticated then login user
         if user:
             login(request, user)
@@ -127,7 +119,6 @@ arguments from URL resolver and returns a <code>Response</code>.
             del_dict_key(request.session, 'access_token')
             del_dict_key(request.session, 'request_token')
             return HttpResponseRedirect(reverse('socialauth_login_page'))
-    
         # authentication was successful, use is now logged in
         next = request.session.get('twitter_login_next', None)
         if next:

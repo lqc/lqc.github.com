@@ -122,3 +122,50 @@ Together with some useful mixins, e.g:
   * `FormMixin` - form validation methods
   * `ModelFormMixin` - extends `FormMixin` to work with ModelForms.
 
+----
+
+# Simple form post processing
+
+    !python
+    from django.views.generic import CreateView
+    from myapp.signals import custom_signal
+
+    class CreateArticleView(CreateView):
+
+        def get_form_kwargs(self):
+            kwargs = super(CreateArticleView, self).get_form_kwargs()
+            # by default this will be 'data', 'files' and 'initial'
+            kwargs['author'] = self.request.user
+            return kwargs
+
+        def form_valid(self, form):
+            """Called when the form is valid"""
+            response = super(CreateArticleView, self).form_valid(form)
+            if self.object:
+                custom_signal.send(sender=type(self.object), instance=self.object)
+            # .. or add a Celery task, a message, etc.
+            return response
+
+----
+
+# Overriding tricks
+
+    !python
+    class DelayedModelFormMixin(ModelFormMixin):
+
+        def form_valid(self, form):
+            self.object = form.save(commit=False)
+            self.prepare_object_for_save(self.object)
+            self.object.save()
+            self.object.save_m2m()
+            # emit the signal here...
+            return super(ModelFormMixin, self).form_valid(form)
+
+        def prepare_object_for_save(self, obj):
+            pass
+
+    class CreateCommentView(DelayedModelFormMixin, CreateView):
+
+        def prepare_object_for_save(self, obj)
+            obj.author = self.request.user
+

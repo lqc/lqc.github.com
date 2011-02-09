@@ -365,20 +365,20 @@ div.highlight pre {
 .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
 .kt { color: #B00040 } /* Keyword.Type */
 .m { color: #666666 } /* Literal.Number */
-.s { color: green; } /* Literal.String */
+.s { color: #40ff40; } /* Literal.String */
 .na { color: #7D9029 } /* Name.Attribute */
 .nb { color: #008000 } /* Name.Builtin */
-.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.nc { color: #8080FF; font-weight: bold } /* Name.Class */
 .no { color: #880000 } /* Name.Constant */
 .nd { color: #AA22FF } /* Name.Decorator */
 .ni { color: #999999; font-weight: bold } /* Name.Entity */
 .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.nf { color: #900; font-weight: bold;} /* Name.Function */
+.nf { color: #aa22ff; font-weight: bold;} /* Name.Function */
 .nl { color: #A0A000; } /* Name.Label */
-.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nn { color: #8080FF; font-weight: bold } /* Name.Namespace */
 .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .nv { color: #19177C } /* Name.Variable */
-.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.ow { color: #080; font-weight: bold } /* Operator.Word */
 .w { color: #bbbbbb } /* Text.Whitespace */
 .mf { color: #666666 } /* Literal.Number.Float */
 .mh { color: #666666 } /* Literal.Number.Hex */
@@ -467,26 +467,26 @@ dl.view-definition dt {
   background-position: center;
 }
 
-.slide:nth-child(16) {
+.slide:nth-child(18) {
   color: white;
   background: black url("images/cake_decorator.jpg") no-repeat;
   background-size: contain;
   background-position: center;
 }
 
-.slide:nth-child(16) header h1 {
+.slide:nth-child(18) header h1 {
   position: absolute;
   text-align: left;
 }
 
 
 .slide.largelisting section {
-    margin: 30px; 
+    margin: 20px; 
 }
 
 .slide.largelisting pre {
-    font-size: 11px;
-    line-height: 13px;
+    font-size: 13px;
+    line-height: 15px;
     margin: 5px;
 }
 

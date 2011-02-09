@@ -451,20 +451,20 @@ div.highlight pre {
 .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
 .kt { color: #B00040 } /* Keyword.Type */
 .m { color: #666666 } /* Literal.Number */
-.s { color: green; } /* Literal.String */
+.s { color: #40ff40; } /* Literal.String */
 .na { color: #7D9029 } /* Name.Attribute */
 .nb { color: #008000 } /* Name.Builtin */
-.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.nc { color: #8080FF; font-weight: bold } /* Name.Class */
 .no { color: #880000 } /* Name.Constant */
 .nd { color: #AA22FF } /* Name.Decorator */
 .ni { color: #999999; font-weight: bold } /* Name.Entity */
 .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.nf { color: #900; font-weight: bold;} /* Name.Function */
+.nf { color: #aa22ff; font-weight: bold;} /* Name.Function */
 .nl { color: #A0A000; } /* Name.Label */
-.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nn { color: #8080FF; font-weight: bold } /* Name.Namespace */
 .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .nv { color: #19177C } /* Name.Variable */
-.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.ow { color: #080; font-weight: bold } /* Operator.Word */
 .w { color: #bbbbbb } /* Text.Whitespace */
 .mf { color: #666666 } /* Literal.Number.Float */
 .mh { color: #666666 } /* Literal.Number.Hex */
@@ -553,26 +553,26 @@ dl.view-definition dt {
   background-position: center;
 }
 
-.slide:nth-child(16) {
+.slide:nth-child(18) {
   color: white;
   background: black url("images/cake_decorator.jpg") no-repeat;
   background-size: contain;
   background-position: center;
 }
 
-.slide:nth-child(16) header h1 {
+.slide:nth-child(18) header h1 {
   position: absolute;
   text-align: left;
 }
 
 
 .slide.largelisting section {
-    margin: 30px; 
+    margin: 20px; 
 }
 
 .slide.largelisting pre {
-    font-size: 11px;
-    line-height: 13px;
+    font-size: 13px;
+    line-height: 15px;
     margin: 5px;
 }
 
@@ -900,7 +900,7 @@ dl.view-definition dt {
           </aside>
           
           <aside class="page_number">
-            1/22
+            1/24
           </aside>
         </footer>
       </div>
@@ -933,7 +933,7 @@ daily work is easier. </p></section>
           </aside>
           
           <aside class="page_number">
-            2/22
+            2/24
           </aside>
         </footer>
       </div>
@@ -956,7 +956,7 @@ daily work is easier. </p></section>
           </aside>
           
           <aside class="page_number">
-            3/22
+            3/24
           </aside>
         </footer>
       </div>
@@ -976,7 +976,7 @@ daily work is easier. </p></section>
           </aside>
           
           <aside class="page_number">
-            4/22
+            4/24
           </aside>
         </footer>
       </div>
@@ -1010,7 +1010,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            5/22
+            5/24
           </aside>
         </footer>
       </div>
@@ -1030,7 +1030,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            6/22
+            6/24
           </aside>
         </footer>
       </div>
@@ -1099,7 +1099,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            7/22
+            7/24
           </aside>
         </footer>
       </div>
@@ -1113,54 +1113,45 @@ arguments from URL resolver and returns a <code>Response</code>.
 <span class="lineno"> 2</span>     <span class="n">request_token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;request_token&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
 <span class="lineno"> 3</span>     <span class="n">verifier</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;oauth_verifier&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
 <span class="lineno"> 4</span>     <span class="n">denied</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;denied&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-<span class="lineno"> 5</span> 
-<span class="lineno"> 6</span>     <span class="c"># If we&#39;ve been denied, put them back to the signin page</span>
-<span class="lineno"> 7</span>     <span class="c"># They probably meant to sign in with facebook &gt;:D</span>
-<span class="lineno"> 8</span>     <span class="k">if</span> <span class="n">denied</span><span class="p">:</span>
-<span class="lineno"> 9</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
-<span class="lineno">10</span> 
-<span class="lineno">11</span>     <span class="c"># If there is no request_token for session,</span>
-<span class="lineno">12</span>     <span class="c"># Means we didn&#39;t redirect user to twitter</span>
-<span class="lineno">13</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">request_token</span><span class="p">:</span>
-<span class="lineno">14</span>         <span class="c"># Redirect the user to the login page,</span>
-<span class="lineno">15</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
-<span class="lineno">16</span> 
-<span class="lineno">17</span>     <span class="n">token</span> <span class="o">=</span> <span class="n">oauth</span><span class="o">.</span><span class="n">Token</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">request_token</span><span class="p">)</span>
-<span class="lineno">18</span> 
-<span class="lineno">19</span>     <span class="c"># If the token from session and token from twitter does not match</span>
-<span class="lineno">20</span>     <span class="c"># means something bad happened to tokens</span>
-<span class="lineno">21</span>     <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">key</span> <span class="o">!=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;oauth_token&#39;</span><span class="p">,</span> <span class="s">&#39;no-token&#39;</span><span class="p">):</span>
-<span class="lineno">22</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;request_token&#39;</span><span class="p">)</span>
-<span class="lineno">23</span>         <span class="c"># Redirect the user to the login page</span>
-<span class="lineno">24</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
-<span class="lineno">25</span> 
-<span class="lineno">26</span>     <span class="k">try</span><span class="p">:</span>
-<span class="lineno">27</span>         <span class="n">twitter</span> <span class="o">=</span> <span class="n">oauthtwitter</span><span class="o">.</span><span class="n">TwitterOAuthClient</span><span class="p">(</span><span class="n">TWITTER_CONSUMER_KEY</span><span class="p">,</span> 
-<span class="lineno">28</span>                                                   <span class="n">TWITTER_CONSUMER_SECRET</span><span class="p">)</span>
-<span class="lineno">29</span>         <span class="n">access_token</span> <span class="o">=</span> <span class="n">twitter</span><span class="o">.</span><span class="n">fetch_access_token</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">verifier</span><span class="p">)</span>
-<span class="lineno">30</span> 
-<span class="lineno">31</span>         <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s">&#39;access_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
-<span class="lineno">32</span>         <span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">twitter_access_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">)</span>
-<span class="lineno">33</span>     <span class="k">except</span><span class="p">:</span>
-<span class="lineno">34</span>         <span class="n">user</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="lineno">35</span> 
-<span class="lineno">36</span>     <span class="c"># if user is authenticated then login user</span>
-<span class="lineno">37</span>     <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
-<span class="lineno">38</span>         <span class="n">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
-<span class="lineno">39</span>     <span class="k">else</span><span class="p">:</span>
-<span class="lineno">40</span>         <span class="c"># We were not able to authenticate user</span>
-<span class="lineno">41</span>         <span class="c"># Redirect to login page</span>
-<span class="lineno">42</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;access_token&#39;</span><span class="p">)</span>
-<span class="lineno">43</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;request_token&#39;</span><span class="p">)</span>
-<span class="lineno">44</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;socialauth_login_page&#39;</span><span class="p">))</span>
-<span class="lineno">45</span> 
-<span class="lineno">46</span>     <span class="c"># authentication was successful, use is now logged in</span>
-<span class="lineno">47</span>     <span class="nb">next</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;twitter_login_next&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-<span class="lineno">48</span>     <span class="k">if</span> <span class="nb">next</span><span class="p">:</span>
-<span class="lineno">49</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;twitter_login_next&#39;</span><span class="p">)</span>
-<span class="lineno">50</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span>
-<span class="lineno">51</span>     <span class="k">else</span><span class="p">:</span>
-<span class="lineno">52</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">LOGIN_REDIRECT_URL</span><span class="p">)</span>
+<span class="lineno"> 5</span>     <span class="c"># If we&#39;ve been denied, put them back to the signin page</span>
+<span class="lineno"> 6</span>     <span class="c"># They probably meant to sign in with facebook &gt;:D</span>
+<span class="lineno"> 7</span>     <span class="k">if</span> <span class="n">denied</span><span class="p">:</span>
+<span class="lineno"> 8</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
+<span class="lineno"> 9</span>     <span class="c"># If there is no request_token for session,</span>
+<span class="lineno">10</span>     <span class="c"># Means we didn&#39;t redirect user to twitter</span>
+<span class="lineno">11</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">request_token</span><span class="p">:</span>
+<span class="lineno">12</span>         <span class="c"># Redirect the user to the login page,</span>
+<span class="lineno">13</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
+<span class="lineno">14</span>     <span class="n">token</span> <span class="o">=</span> <span class="n">oauth</span><span class="o">.</span><span class="n">Token</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">request_token</span><span class="p">)</span>
+<span class="lineno">15</span>     <span class="c"># If the token from session and token from twitter does not match</span>
+<span class="lineno">16</span>     <span class="c"># means something bad happened to tokens</span>
+<span class="lineno">17</span>     <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">key</span> <span class="o">!=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;oauth_token&#39;</span><span class="p">,</span> <span class="s">&#39;no-token&#39;</span><span class="p">):</span>
+<span class="lineno">18</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;request_token&#39;</span><span class="p">)</span>
+<span class="lineno">19</span>         <span class="c"># Redirect the user to the login page</span>
+<span class="lineno">20</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;socialauth_login_page&quot;</span><span class="p">))</span>
+<span class="lineno">21</span>     <span class="k">try</span><span class="p">:</span>
+<span class="lineno">22</span>         <span class="n">twitter</span> <span class="o">=</span> <span class="n">oauthtwitter</span><span class="o">.</span><span class="n">TwitterOAuthClient</span><span class="p">(</span><span class="n">TWITTER_CONSUMER_KEY</span><span class="p">,</span> <span class="n">TWITTER_CONSUMER_SECRET</span><span class="p">)</span>
+<span class="lineno">23</span>         <span class="n">access_token</span> <span class="o">=</span> <span class="n">twitter</span><span class="o">.</span><span class="n">fetch_access_token</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">verifier</span><span class="p">)</span>
+<span class="lineno">24</span>         <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s">&#39;access_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+<span class="lineno">25</span>         <span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">twitter_access_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">)</span>
+<span class="lineno">26</span>     <span class="k">except</span><span class="p">:</span>
+<span class="lineno">27</span>         <span class="n">user</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="lineno">28</span>     <span class="c"># if user is authenticated then login user</span>
+<span class="lineno">29</span>     <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+<span class="lineno">30</span>         <span class="n">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+<span class="lineno">31</span>     <span class="k">else</span><span class="p">:</span>
+<span class="lineno">32</span>         <span class="c"># We were not able to authenticate user</span>
+<span class="lineno">33</span>         <span class="c"># Redirect to login page</span>
+<span class="lineno">34</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;access_token&#39;</span><span class="p">)</span>
+<span class="lineno">35</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;request_token&#39;</span><span class="p">)</span>
+<span class="lineno">36</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;socialauth_login_page&#39;</span><span class="p">))</span>
+<span class="lineno">37</span>     <span class="c"># authentication was successful, use is now logged in</span>
+<span class="lineno">38</span>     <span class="nb">next</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;twitter_login_next&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="lineno">39</span>     <span class="k">if</span> <span class="nb">next</span><span class="p">:</span>
+<span class="lineno">40</span>         <span class="n">del_dict_key</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s">&#39;twitter_login_next&#39;</span><span class="p">)</span>
+<span class="lineno">41</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span>
+<span class="lineno">42</span>     <span class="k">else</span><span class="p">:</span>
+<span class="lineno">43</span>         <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">LOGIN_REDIRECT_URL</span><span class="p">)</span>
 </pre></div>
 </section>
           
@@ -1172,7 +1163,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            8/22
+            8/24
           </aside>
         </footer>
       </div>
@@ -1192,7 +1183,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            9/22
+            9/24
           </aside>
         </footer>
       </div>
@@ -1225,7 +1216,7 @@ arguments from URL resolver and returns a <code>Response</code>.
           </aside>
           
           <aside class="page_number">
-            10/22
+            10/24
           </aside>
         </footer>
       </div>
@@ -1239,7 +1230,7 @@ arguments from URL resolver and returns a <code>Response</code>.
         <footer>
           
           <aside class="page_number">
-            /22
+            /24
           </aside>
         </footer>
       </div>
@@ -1284,7 +1275,7 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            11/22
+            11/24
           </aside>
         </footer>
       </div>
@@ -1330,7 +1321,7 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            12/22
+            12/24
           </aside>
         </footer>
       </div>
@@ -1373,7 +1364,7 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            13/22
+            13/24
           </aside>
         </footer>
       </div>
@@ -1410,7 +1401,88 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            14/22
+            14/24
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>Simple form post processing</h1></header>
+          
+          
+          <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">CreateView</span>
+<span class="lineno"> 2</span> <span class="kn">from</span> <span class="nn">myapp.signals</span> <span class="kn">import</span> <span class="n">custom_signal</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span> <span class="k">class</span> <span class="nc">CreateArticleView</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>     <span class="k">def</span> <span class="nf">get_form_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="lineno"> 7</span>         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CreateArticleView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">()</span>
+<span class="lineno"> 8</span>         <span class="c"># by default this will be &#39;data&#39;, &#39;files&#39; and &#39;initial&#39;</span>
+<span class="lineno"> 9</span>         <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+<span class="lineno">10</span>         <span class="k">return</span> <span class="n">kwargs</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span>     <span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="lineno">13</span>         <span class="sd">&quot;&quot;&quot;Called when the form is valid&quot;&quot;&quot;</span>
+<span class="lineno">14</span>         <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CreateArticleView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+<span class="lineno">15</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">:</span>
+<span class="lineno">16</span>             <span class="n">custom_signal</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">sender</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">),</span> <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+<span class="lineno">17</span>         <span class="c"># .. or add a Celery task, a message, etc.</span>
+<span class="lineno">18</span>         <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            15/24
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: src/class_views.md -->
+      <div class="slide has_code">
+        <div class="inner">
+          
+          <header><h1>Overriding tricks</h1></header>
+          
+          
+          <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">DelayedModelFormMixin</span><span class="p">(</span><span class="n">ModelFormMixin</span><span class="p">):</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span>     <span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="lineno"> 4</span>         <span class="bp">self</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="lineno"> 5</span>         <span class="bp">self</span><span class="o">.</span><span class="n">prepare_object_for_save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="lineno"> 7</span>         <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">save_m2m</span><span class="p">()</span>
+<span class="lineno"> 8</span>         <span class="c"># emit the signal here...</span>
+<span class="lineno"> 9</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">ModelFormMixin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>     <span class="k">def</span> <span class="nf">prepare_object_for_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="lineno">12</span>         <span class="k">pass</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span> <span class="k">class</span> <span class="nc">CreateCommentView</span><span class="p">(</span><span class="n">DelayedModelFormMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span>     <span class="k">def</span> <span class="nf">prepare_object_for_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+<span class="lineno">17</span>         <span class="n">obj</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+</pre></div>
+</section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="file:///home/lrekucki/github_page/pykonik/src/class_views.md">src/class_views.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            16/24
           </aside>
         </footer>
       </div>
@@ -1430,7 +1502,7 @@ This made it the major topic for bikeshedding on django&ndash;developers
           </aside>
           
           <aside class="page_number">
-            15/22
+            17/24
           </aside>
         </footer>
       </div>
@@ -1466,7 +1538,7 @@ so subclassing is not possible.</p></section>
           </aside>
           
           <aside class="page_number">
-            16/22
+            18/24
           </aside>
         </footer>
       </div>
@@ -1505,7 +1577,7 @@ to the function returned by <code>as_view()</code>, so that <code>csrf_exempt</c
           </aside>
           
           <aside class="page_number">
-            17/22
+            19/24
           </aside>
         </footer>
       </div>
@@ -1551,7 +1623,7 @@ useful (requires Python 2.6):</p>
           </aside>
           
           <aside class="page_number">
-            18/22
+            20/24
           </aside>
         </footer>
       </div>
@@ -1581,7 +1653,7 @@ you want to provide a decorator too.</li>
           </aside>
           
           <aside class="page_number">
-            19/22
+            21/24
           </aside>
         </footer>
       </div>
@@ -1601,7 +1673,7 @@ you want to provide a decorator too.</li>
           </aside>
           
           <aside class="page_number">
-            20/22
+            22/24
           </aside>
         </footer>
       </div>
@@ -1628,7 +1700,7 @@ you want to provide a decorator too.</li>
           </aside>
           
           <aside class="page_number">
-            21/22
+            23/24
           </aside>
         </footer>
       </div>
@@ -1648,7 +1720,7 @@ you want to provide a decorator too.</li>
           </aside>
           
           <aside class="page_number">
-            22/22
+            24/24
           </aside>
         </footer>
       </div>
@@ -1722,50 +1794,62 @@ you want to provide a decorator too.</li>
       
             
       <tr id="toc-row-15">
-        <th><a href="#slide15">Decorating</a></th>
+        <th><a href="#slide15">Simple form post processing</a></th>
         <td><a href="#slide15">15</a></td>
       </tr>
       
             
       <tr id="toc-row-16">
-        <th><a href="#slide16">In URLconf</a></th>
+        <th><a href="#slide16">Overriding tricks</a></th>
         <td><a href="#slide16">16</a></td>
       </tr>
       
             
       <tr id="toc-row-17">
-        <th><a href="#slide17">Decorating methods</a></th>
+        <th><a href="#slide17">Decorating</a></th>
         <td><a href="#slide17">17</a></td>
       </tr>
       
             
       <tr id="toc-row-18">
-        <th><a href="#slide18">Class decorators</a></th>
+        <th><a href="#slide18">In URLconf</a></th>
         <td><a href="#slide18">18</a></td>
       </tr>
       
             
       <tr id="toc-row-19">
-        <th><a href="#slide19">Decorators vs. Mixins</a></th>
+        <th><a href="#slide19">Decorating methods</a></th>
         <td><a href="#slide19">19</a></td>
       </tr>
       
             
       <tr id="toc-row-20">
-        <th><a href="#slide20">Thank you !</a></th>
+        <th><a href="#slide20">Class decorators</a></th>
         <td><a href="#slide20">20</a></td>
       </tr>
       
             
       <tr id="toc-row-21">
-        <th><a href="#slide21">Attributions</a></th>
+        <th><a href="#slide21">Decorators vs. Mixins</a></th>
         <td><a href="#slide21">21</a></td>
       </tr>
       
             
       <tr id="toc-row-22">
-        <th><a href="#slide22">Questions ?</a></th>
+        <th><a href="#slide22">Thank you !</a></th>
         <td><a href="#slide22">22</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-23">
+        <th><a href="#slide23">Attributions</a></th>
+        <td><a href="#slide23">23</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-24">
+        <th><a href="#slide24">Questions ?</a></th>
+        <td><a href="#slide24">24</a></td>
       </tr>
       
       
