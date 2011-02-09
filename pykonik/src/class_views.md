@@ -22,8 +22,7 @@ In Python, any object with a `__call__` attribute is a *Callable*, e.g:
 
 # The `View` class aka `Bikeshed` 
 
-* There are many ways to implement the base class. See: 
-`http://code.djangoproject.com/wiki/ClassBasedViews`
+* There are many ways to implement the base class. See the [Wiki](http://code.djangoproject.com/wiki/ClassBasedViews).
 
 * They all have pros and cons, but most differences are purely cosmetic. 
 This made it the major topic for bikeshedding on django&ndash;developers 
