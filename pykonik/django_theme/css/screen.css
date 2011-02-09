@@ -292,6 +292,7 @@ li {
   text-decoration: none;
   border-bottom: none;
   padding: 4px 0;
+  color: black;
 }
 
 .sidebar tr.active {

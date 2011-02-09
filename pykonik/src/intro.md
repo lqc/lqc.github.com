@@ -11,7 +11,7 @@ open-source project [**Wolnelektury.pl**](http://www.wolnelektury.pl/).
 
 ### March 2010
 
-Joined a promising polish start-up called [**Smartupz.com**](http://www.smartupz.com/).
+Joined a promising Polish start-up called [**Smartupz.com**](http://www.smartupz.com/).
 
 ### August 2010 
 
@@ -19,7 +19,7 @@ My first patch got commited to Django code base. Yey!
 
 ### Now
 
-Still working at Smartupz. Trying to get more patches in so that my 
+Still working at Smartupz. Trying to get more patches into Django so that my 
 daily work is easier. 
 
 ----
