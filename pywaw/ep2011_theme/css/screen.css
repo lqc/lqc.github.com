@@ -418,6 +418,8 @@ del {
   opacity: 0.5;
 }
 
+
+/*
 dl.view-definition {
   font-size: 32px;
   margin-bottom: 48px;
@@ -428,6 +430,7 @@ dl.view-definition dt {
   color: #FFC757;
   margin-bottom: 20px;
 }
+
 
 .slide:nth-child(2) h3 {
   font-size: 26px;
@@ -492,3 +495,4 @@ dl.view-definition dt {
     font-size: 12px;
     line-height: 14px;
 } 
+*/
