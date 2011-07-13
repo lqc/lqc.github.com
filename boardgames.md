@@ -26,7 +26,7 @@ na uniwersytecie Syracuse. Jest to seria nakierunkowana na omawianie konkretnych
 i pokazanie rozgrywki. Jeśli więc słyszeliście o jakiejś grze i chcecie zobaczyć czy warto 
 w nią zagrać lub kupić, warto zobaczyć recenzję Scotta.
 
-Na wyjeździe widzieliście ostatni, 70-ty odcinek: <q>Breaking Up the Monopoly</q>. 
+Na wyjeździe widzieliście ostatni, 70-ty odcinek: [<q>Breaking Up the Monopoly</q>](http://www.boardgameswithscott.com/?p=403). 
 Wszystkie można obejrzeć też na [YouTube](http://www.youtube.com/user/snicholson) łącznie
 z innymi ciekawymi filmikami.
 
