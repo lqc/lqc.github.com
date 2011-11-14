@@ -1,3 +1,8 @@
+---
+title: Planszówkowe Linki
+layout: wikistyle
+---
+
 Planszówkowe Linki
 ==================
 
