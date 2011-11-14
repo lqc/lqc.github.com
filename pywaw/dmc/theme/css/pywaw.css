@@ -4,7 +4,7 @@ body {
 
 div.slide {
    background-color: white;
-   background-image: url('images/pywaw_logo.jpeg');
+   background-image: url('../../images/pywaw_logo.jpeg');
    background-repeat: no-repeat;
    background-position: 95% 95%;
    background-size: 120px;
