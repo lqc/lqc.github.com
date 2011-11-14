@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Declarative Metaclass Pattern</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="/home/lrekucki/environments/pywaw/lib/python2.7/site-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="/home/lrekucki/environments/pywaw/lib/python2.7/site-packages/landslide/themes/default/css/screen.css">
+    
+    
+      
+      <link rel="stylesheet" href="../pywaw.css">
+      
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="/home/lrekucki/environments/pywaw/lib/python2.7/site-packages/landslide/themes/default/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Declarative Metaclass Pattern</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>+Łukasz Rekucki</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>What the hell are you talking about ?</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Django Forms</h1></header>
+            
+            
+            <section><div class="mcode">
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">UserCreationForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A form that creates a user, with no privileges, </span>
+<span class="sd">    from the given username and password.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">RegexField</span><span class="p">(</span>
+                            <span class="n">label</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;Username&quot;</span><span class="p">),</span> 
+                            <span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> 
+                            <span class="n">regex</span><span class="o">=</span><span class="s">r&#39;^[\w.@+-]+$&#39;</span><span class="p">)</span>
+
+    <span class="n">password1</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+                            <span class="n">label</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;Password&quot;</span><span class="p">),</span> 
+                            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">)</span>
+
+    <span class="n">password2</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+                            <span class="n">label</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;Password confirmation&quot;</span><span class="p">),</span> 
+                            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span> <span class="c"># Meta, WTF ?</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;username&quot;</span><span class="p">,)</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Django Models</h1></header>
+            
+            
+            <section><div class="scode">
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Comment</span><span class="p">(</span><span class="n">BaseCommentAbstractModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A user comment about some object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user</span>        <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">&#39;user&#39;</span><span class="p">),</span>
+                    <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                    <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%(class)s</span><span class="s">_comments&quot;</span><span class="p">)</span>
+
+    <span class="n">user_name</span>   <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;user&#39;s name&quot;</span><span class="p">),</span> 
+                    <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">user_email</span>  <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;user&#39;s email address&quot;</span><span class="p">),</span> 
+                    <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">user_url</span>    <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">URLField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;user&#39;s URL&quot;</span><span class="p">),</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&#39;comment&#39;</span><span class="p">),</span> 
+                    <span class="n">max_length</span><span class="o">=</span><span class="n">COMMENT_MAX_LENGTH</span><span class="p">)</span>
+
+    <span class="c"># Metadata about the comment</span>
+    <span class="n">submit_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&#39;date/time submitted&#39;</span><span class="p">),</span> 
+                    <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">ip_address</span>  <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IPAddressField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&#39;IP address&#39;</span><span class="p">),</span>
+                    <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Django Filters (by Alex Gaynor)</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="k">class</span> <span class="nc">ProductFilter</span><span class="p">(</span><span class="n">django_filters</span><span class="o">.</span><span class="n">FilterSet</span><span class="p">):</span>
+
+    <span class="n">price</span> <span class="o">=</span> <span class="n">django_filters</span><span class="o">.</span><span class="n">NumberFilter</span><span class="p">(</span>
+                <span class="n">lookup_type</span><span class="o">=</span><span class="s">&#39;lt&#39;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Product</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">,</span> <span class="s">&#39;release_date&#39;</span><span class="p">]</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>SQLAlchemy</h1></header>
+            
+            
+            <section><div class="mcode">
+
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;people&#39;</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">discriminator</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s">&#39;type&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+    <span class="n">__mapper_args__</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;polymorphic_on&#39;</span><span class="p">:</span> <span class="n">discriminator</span><span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Engineer</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;engineers&#39;</span>
+    <span class="n">__mapper_args__</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;polymorphic_identity&#39;</span><span class="p">:</span> <span class="s">&#39;engineer&#39;</span><span class="p">}</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;people.id&#39;</span><span class="p">),</span> 
+        <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">primary_language</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>PyStruct</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="nd">@inpacket</span><span class="p">(</span><span class="mh">0x01</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">WelcomePacket</span><span class="p">(</span><span class="n">GaduPacket</span><span class="p">):</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="n">numeric</span><span class="o">.</span><span class="n">IntField</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nd">@inpacket</span><span class="p">(</span><span class="mh">0x05</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MessageAckPacket</span><span class="p">(</span><span class="n">GaduPacket</span><span class="p">):</span> <span class="c">#SendMsgAck</span>
+    <span class="n">MSG_STATUS</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">({</span>
+        <span class="s">&#39;BLOCKED&#39;</span><span class="p">:</span> <span class="mh">0x0001</span><span class="p">,</span> <span class="s">&#39;DELIVERED&#39;</span><span class="p">:</span> <span class="mh">0x0002</span><span class="p">,</span>
+        <span class="s">&#39;QUEUED&#39;</span><span class="p">:</span> <span class="mh">0x0003</span><span class="p">,</span> <span class="s">&#39;MBOXFULL&#39;</span><span class="p">:</span> <span class="mh">0x0004</span><span class="p">,</span>
+        <span class="s">&#39;NOT_DELIVERED&#39;</span><span class="p">:</span> <span class="mh">0x0006</span>
+    <span class="p">})</span>
+
+    <span class="n">msg_status</span>  <span class="o">=</span> <span class="n">numeric</span><span class="o">.</span><span class="n">IntField</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">recipient</span>   <span class="o">=</span> <span class="n">numeric</span><span class="o">.</span><span class="n">IntField</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">seq</span>         <span class="o">=</span> <span class="n">numeric</span><span class="o">.</span><span class="n">IntField</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Cechy wspólne</h1></header>
+            
+            
+            <section><ul>
+<li>Klasa zawiera definicję "pól" w swojej treści. Opis danych, zamiast
+    opisu zachowania.</li>
+<li>Nie budujemy formularza. Podajemy tylko jakie właściwości ma on mieć.</li>
+<li>Kolejność definicji ma znaczenie. Kolumny w tabeli zostaną utworzone
+    w podanej kolejności. Tak samo ze struktrami w <code>PyStruct</code>.</li>
+<li>Nazwy specjalne: <code>__tablename__</code>, `class Meta``, które są 
+    tylko w definicji.</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Jak to działa ?</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Definicja klasy</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code partial_start">
+          <div class="inner">
+            
+            <header><h2>Składnia</h2></header>
+            
+            
+            <section><div class="highlight"><pre><span class="c"># Python 2</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c"># Python 3</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c"># Co się właściwie stanie ?</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code partial">
+          <div class="inner">
+            
+            <header><h2>Rozwinięcie</h2></header>
+            
+            
+            <section><div class="highlight"><pre><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;A&quot;</span>
+<span class="n">bases</span> <span class="o">=</span> <span class="p">(</span><span class="nb">object</span><span class="p">,)</span>
+
+<span class="k">def</span> <span class="nf">_A</span><span class="p">():</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c"># Python 2</span>
+<span class="n">body</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c"># Python 3</span>
+<span class="n">body</span> <span class="o">=</span> <span class="nb">type</span><span class="o">.</span><span class="n">__prepare__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">)</span>
+
+<span class="c"># i dalej:</span>
+<span class="k">exec</span><span class="p">(</span><span class="n">_A</span><span class="o">.</span><span class="n">__code__</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
+<span class="n">A</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Dlaczego <code>type</code> ?</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Metaklasa</h1></header>
+            
+            
+            <section><p>Formalnie jest to dowolny obiekt wywoływalny (ang. callable) przyjmujący 
+wymienione trzy argumenty: <code>name</code>, <code>bases</code> i <code>body</code>.</p>
+<p>(Py3k) Jeśli obiekt ma atrybut <code>__prepare__</code>, to jest wywoływany
+z argumentami <code>name</code> i <code>bases</code> do stworzenia <code>body</code>.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">meta</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+<span class="c"># Python 2</span>
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">meta</span>
+
+<span class="c"># Python 3</span>
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">meta</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Wybór metaklasy</h1></header>
+            
+            
+            <section><p>Metaklasa jest wybierana na podstawie prostego
+algorytmu:</p>
+<div class="mcode">
+
+<div class="highlight"><pre><span class="k">if</span> <span class="n">meta</span><span class="p">:</span>
+   <span class="n">isclass</span> <span class="o">=</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="k">if</span> <span class="ow">not</span> <span class="n">bases</span><span class="p">:</span>
+       <span class="n">meta</span> <span class="o">=</span> <span class="nb">type</span>
+   <span class="k">else</span><span class="p">:</span>
+       <span class="n">meta</span> <span class="o">=</span> <span class="n">bases</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">__class__</span>
+   <span class="n">isclass</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="k">if</span> <span class="n">isclass</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">meta</span><span class="p">):</span>
+            <span class="n">meta</span> <span class="o">=</span> <span class="n">base</span>
+            <span class="k">continue</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Konflikt&quot;</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">meta</span>
+</pre></div>
+
+<p></div>  <br />
+</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Tworzenie instancji przez (meta)klasę</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="n">A</span> <span class="o">=</span> <span class="n">meta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+
+<span class="c"># znów rozwijamy:</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">__call__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+
+<span class="c"># jeśli ``meta`` jest klasą</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">meta</span><span class="p">):</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+</pre></div>
+
+<p>Będziemy więc nadpisywać <code>__new__</code> albo <code>__init__</code> w zależności od potrzeb.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Klasa dla pól</h1></header>
+            
+            
+            <section><p>Potrzebujemy osobnej klasy bazowej dla pól (może być abstrakcyjna, 
+patrz moduł <code>abc</code>), aby móc rozróżnić je od zwykłych metod.</p>
+<p>Musimy też rozwiązać jakoś problem <em>kolejności</em>, gdyż domyślnie nazwy
+zdefiniowane w ciele klasy są wkładane do słownika.</p>
+<div class="scode">
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">BaseField</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">_creation_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">BaseField</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">_creation_counter</span> <span class="o">=</span> <span class="n">BaseField</span><span class="o">.</span><span class="n">_creation_counter</span>
+        <span class="n">BaseField</span><span class="o">.</span><span class="n">_creation_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Metaklasa (Python 2)</h1></header>
+            
+            
+            <section><div class="scode">
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">DMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+        <span class="c"># Wyciągnij definicję</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">BaseField</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">body</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="c"># opcjonalne</span>
+            <span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">field</span><span class="p">))</span>
+        <span class="n">fields</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_creation_counter</span><span class="p">)</span>
+
+        <span class="n">cls</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+
+        <span class="c"># Zsumuj definicję</span>
+        <span class="n">base_fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
+            <span class="n">base_fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="p">)</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">(</span><span class="n">base_fields</span> <span class="o">+</span> <span class="n">fields</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">contribute_to_class</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cls</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Metaklasa (Python 3)</h1></header>
+            
+            
+            <section><div class="scode">
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">DMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+
+        <span class="c"># Wyciągnij definicję</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">BaseField</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">body</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="c"># opcjonalne</span>
+            <span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+
+        <span class="n">cls</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+
+        <span class="c"># Zsumuj definicję</span>
+        <span class="n">base_fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
+            <span class="n">base_fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="p">)</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">(</span><span class="n">base_fields</span> <span class="o">+</span> <span class="n">fields</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">contribute_to_class</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cls</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Klasa <code>Meta</code></h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="k">class</span> <span class="nc">Struct</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">DMeta</span><span class="p">):</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">two</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">unique_together</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">)]</span>
+</pre></div>
+
+<p>Pozwala definiować dodatkowe własności nie związane z&nbsp;konkretnym
+polem unikająć kolizji z nazwami pól, bez używania wszędzie <code>__</code> i
+nie zaśmiecając klasy.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              21/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Po co właściwie to wszystko ?</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              22/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Co można zrobić lepiej w Py3k ?</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              23/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h2>Pola z nadklasy</h2></header>
+            
+            
+            <section><div class="mcode">
+
+<div class="highlight"><pre><span class="c"># Formularze Django:</span>
+
+<span class="k">class</span> <span class="nc">ArticleForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                    <span class="n">choices</span><span class="o">=</span><span class="p">((</span><span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;News&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s">&quot;R&quot;</span><span class="p">,</span> <span class="s">&quot;Review&quot;</span><span class="p">))</span>
+
+<span class="c"># Teraz chcemy stworzyć specjalny formularz dla News, więc</span>
+<span class="c"># musimy ograniczyć category</span>
+
+<span class="c"># Nie zadziała:</span>
+<span class="k">class</span> <span class="nc">NewsForm</span><span class="p">(</span><span class="n">ArticleForm</span><span class="p">):</span>
+    <span class="n">category</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;News&quot;</span><span class="p">),)</span>
+
+<span class="c"># Można tak, ale musimy powtórzyć </span>
+<span class="c"># wszystkie inne opcje</span>
+<span class="k">class</span> <span class="nc">NewsForm</span><span class="p">(</span><span class="n">ArticleForm</span><span class="p">):</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                    <span class="n">choices</span><span class="o">=</span><span class="p">((</span><span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;News&quot;</span><span class="p">),))</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              24/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h2>Pola z nadklasy</h2></header>
+            
+            
+            <section><div class="mcode">
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">ExtMeta</span><span class="p">(</span><span class="n">DMeta</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+<span class="k">class</span> <span class="nc">NewsForm</span><span class="p">(</span><span class="n">ArticleForm</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ExtMeta</span><span class="p">):</span>
+    <span class="n">category</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;News&quot;</span><span class="p">),)</span>
+</pre></div>
+
+<p></div>          <br />
+</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              25/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h2>Pozbyć się <code>Meta</code></h2></header>
+            
+            
+            <section><div class="mcode">
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Options</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">add_unique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unique_tuples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">OptsMeta</span><span class="p">(</span><span class="n">ExtMeta</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">)</span>
+        <span class="n">d</span><span class="p">[</span><span class="s">&quot;Meta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Options</span><span class="p">(</span><span class="n">bases</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">OptsMeta</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+
+    <span class="n">Meta</span><span class="o">.</span><span class="n">add_unique</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              26/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Pomysły ?</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              27/27
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Declarative Metaclass Pattern</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">+Łukasz Rekucki</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">What the hell are you talking about ?</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">Django Forms</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">Django Models</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">Django Filters (by Alex Gaynor)</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">SQLAlchemy</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">PyStruct</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Cechy wspólne</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Jak to działa ?</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Definicja klasy</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-12" class="sub">
+          <th><a href="#slide12">Składnia</a></th>
+          <td><a href="#slide12">12</a></td>
+        </tr>
+        
+        <tr id="toc-row-13" class="sub">
+          <th><a href="#slide13">Rozwinięcie</a></th>
+          <td><a href="#slide13">13</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">Dlaczego <code>type</code> ?</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Metaklasa</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">Wybór metaklasy</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Tworzenie instancji przez (meta)klasę</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Klasa dla pól</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Metaklasa (Python 2)</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Metaklasa (Python 3)</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-21">
+        <th><a href="#slide21">Klasa <code>Meta</code></a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-22">
+        <th><a href="#slide22">Po co właściwie to wszystko ?</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-23">
+        <th><a href="#slide23">Co można zrobić lepiej w Py3k ?</a></th>
+        <td><a href="#slide23">23</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-24" class="sub">
+          <th><a href="#slide24">Pola z nadklasy</a></th>
+          <td><a href="#slide24">24</a></td>
+        </tr>
+        
+        <tr id="toc-row-25" class="sub">
+          <th><a href="#slide25">Pola z nadklasy</a></th>
+          <td><a href="#slide25">25</a></td>
+        </tr>
+        
+        <tr id="toc-row-26" class="sub">
+          <th><a href="#slide26">Pozbyć się <code>Meta</code></a></th>
+          <td><a href="#slide26">26</a></td>
+        </tr>
+        
+      
+      
+      <tr id="toc-row-27">
+        <th><a href="#slide27">Pomysły ?</a></th>
+        <td><a href="#slide27">27</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+body {
+   background: black;
+}
+
+div.slide {
+   background-color: white;
+   background-image: url('images/pywaw_logo.jpeg');
+   background-repeat: no-repeat;
+   background-position: 95% 95%;
+   background-size: 120px;
+}
+
+div.slide p {
+    font-size: 28px;
+}
+
+div.slide li {
+    font-size: 28px;
+}
+
+div.slide.current.partial,
+div.slide.partial_start.past,
+div.slide.partial.past {
+   -webkit-transition-duration: 0s;
+}
+
+.highlight pre {
+    font-size: 26px;
+    margin-left: 1em;
+}
+
+.longcode pre {
+    font-size: 18px;
+}
+
+.mcode pre {
+    font-size: 22px;
+}
+
+.scode pre {
+    font-size: 18px;
+    margin-left: 0.2em;
+}
