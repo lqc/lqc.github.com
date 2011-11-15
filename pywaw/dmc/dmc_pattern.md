@@ -507,4 +507,8 @@ nie zaśmiecając klasy.
 
 ----
 
+# Przykład: [https://gist.github.com/1368346](https://gist.github.com/1368346)
+
+----
+
 # Pomysły ?
