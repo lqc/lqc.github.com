@@ -10,34 +10,28 @@ div.slide {
    background-size: 120px;
 }
 
+.slide header:only-child h1 {
+    font-size: 46px;
+}
+
 div.slide p {
-    font-size: 28px;
+    font-size: 26px;
 }
 
 div.slide li {
     font-size: 28px;
 }
 
-div.slide.current.partial,
-div.slide.partial_start.past,
-div.slide.partial.past {
-   -webkit-transition-duration: 0s;
-}
-
 .highlight pre {
-    font-size: 26px;
+    font-size: 24px;
     margin-left: 1em;
 }
 
-.longcode pre {
-    font-size: 18px;
-}
-
 .mcode pre {
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .scode pre {
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 0.2em;
 }

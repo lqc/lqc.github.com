@@ -306,26 +306,24 @@ zdefiniowane w ciele klasy są wkładane do słownika.
     class DMeta(type):
     
         def __new__(mcls, name, bases, body):
-            # Wyciągnij definicję
             fields = []
-            for name, field in body.iteritems():
+            for name, field in body.items():
                 if not isinstance(field, BaseField):
                     continue
                 body.pop(name) # opcjonalne
-                field.name = name
                 fields.append((name, field))
             fields.sort(key=lambda f: f[1]._creation_counter)
             
-            cls = super(mcls, type).__new__(mcls, name, bases, body)
+            cls = super(DMeta, mcls).__new__(mcls, name, bases, body)
             
             # Zsumuj definicję
             base_fields = []
             for base in bases:
-                base_fields.extend(base._fields)
+                base_fields.extend(base._fields.items())
             cls._fields = collections.OrderedDict(base_fields + fields)
             
-            for f in cls._fields:
-                f.contribute_to_class(cls, f)
+            for name, field in cls._fields.items():
+                field.contribute_to_class(name, cls)
             return cls
 </div>
 
@@ -337,31 +335,30 @@ zdefiniowane w ciele klasy są wkładane do słownika.
 
     !python
     class DMeta(type):
-    
-        def __prepare__(mcls, name, bases):
-            return collections.OrderedDict()
-    
-        def __new__(mcls, name, bases, body):
-            
-            # Wyciągnij definicję
-            for name, field in body.iteritems():
-                if not isinstance(field, BaseField):
-                    continue
-                body.pop(name) # opcjonalne
-                field.name = name
-                fields.append(field)
-            
-            cls = super().__new__(mcls, name, bases, body)
-            
-            # Zsumuj definicję
-            base_fields = []
-            for base in bases:
-                base_fields.extend(base._fields)
-            cls._fields = collections.OrderedDict(base_fields + fields)
-            
-            for f in cls._fields:
-                f.contribute_to_class(cls, f)
-            return cls
+
+		@classmethod
+		def __prepare__(mcls, name, bases):
+			return collections.OrderedDict()
+
+		def __new__(mcls, name, bases, body):
+			fields = []
+			for name, field in body.items():
+				if not hasattr("contribute_to_class", field):
+					continue
+				body.pop(name) # opcjonalne
+				fields.append((name, field))
+
+			cls = super().__new__(mcls, name, bases, body)
+
+			# Zsumuj definicję
+			base_fields = []
+			for base in bases:
+				base_fields.extend(base._fields.items())
+			cls._fields = collections.OrderedDict(base_fields + fields)
+
+			for name, field in cls._fields.items():
+				field.contribute_to_class(name, cls)
+			return cls
 </div>
 
 ----
@@ -425,15 +422,17 @@ nie zaśmiecając klasy.
 <div class="mcode">
 
     !python
-    class ExtMeta(DMeta):
-    
-        def __prepare__(mcls, name, bases):
-            
-            for base in bases:
-                for name, field in base._fields.iteritems():
-                    d[name] = field.clone()
-            return d
-            
+	class ExtMeta(DMeta):
+
+		@classmethod
+		def __prepare__(mcls, name, bases):
+			d = super().__prepare__(name, bases)
+			for base in bases:
+				for name, field in base._fields.items():
+					d[name] = field.clone()
+			return d
+
+           
     class NewsForm(ArticleForm, metaclass=ExtMeta):
         category.choices = ((1, "News"),)
                    
@@ -444,28 +443,65 @@ nie zaśmiecając klasy.
 ## Pozbyć się ``Meta``
 
 
+<div class="scode">
+
+    !python
+	class Options(object):
+
+		def __init__(self, *base_options):
+			self.unique_tuples = []
+			for base in base_options:
+				self.unique_tuples.extend(base.unique_tuples)
+
+		def add_unique(self, *fields):
+			self.unique_tuples.append(fields)
+
+	class OptsMeta(ExtMeta):
+
+		@classmethod
+		def __prepare__(mcls, name, bases, **kwargs):
+			d = super().__prepare__(name, bases)
+			d["Meta"] = Options(*[base._options for base in bases])
+			return d
+
+		def __new__(mcls, name, bases, body, **kwargs):
+			options = body.pop("Meta")
+			cls = super().__new__(mcls, name, bases, body)
+			cls._options = options
+			return cls
+
+		def __init__(cls, name, bases, body, abstract=False):
+			cls.abstract = abstract
+
+</div>
+
+----
+
+## Pozbyć się ``Meta``
+
 <div class="mcode">
 
     !python
-    class Options(object):
-    
-        def add_unique(self, *fields):
-            self.unique_tuples.append(fields)
-        
-    class OptsMeta(ExtMeta):
-       
-        def __prepare__(mcls, name, bases):
-            d = super().__prepare__(mcls, name, bases)
-            d["Meta"] = Options(bases)
-            return d
-            
-    class A(metaclass=OptsMeta):
-        a = Field()
-        
-    class B(A):
-        b = Field()
-    
-        Meta.add_unique(a, b)
+    class Field:
+		def contribute_to_class(self, name, cls):
+			pass
+
+		def clone(self):
+			return copy.copy(self)  
+
+
+	class Base(metaclass=OptsMeta):
+		pass
+
+
+	class A(Base, abstract=True):
+		a = Field()
+
+
+	class B(A):
+		b = Field()
+
+		Meta.add_unique(a, b)
 
 </div>
 

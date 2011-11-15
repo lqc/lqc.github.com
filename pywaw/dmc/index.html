@@ -74,7 +74,7 @@
             </aside>
             
             <aside class="page_number">
-              1/27
+              1/28
             </aside>
           </footer>
         </div>
@@ -102,7 +102,7 @@
             </aside>
             
             <aside class="page_number">
-              2/27
+              2/28
             </aside>
           </footer>
         </div>
@@ -130,7 +130,7 @@
             </aside>
             
             <aside class="page_number">
-              3/27
+              3/28
             </aside>
           </footer>
         </div>
@@ -185,7 +185,7 @@
             </aside>
             
             <aside class="page_number">
-              4/27
+              4/28
             </aside>
           </footer>
         </div>
@@ -241,7 +241,7 @@
             </aside>
             
             <aside class="page_number">
-              5/27
+              5/28
             </aside>
           </footer>
         </div>
@@ -280,7 +280,7 @@
             </aside>
             
             <aside class="page_number">
-              6/27
+              6/28
             </aside>
           </footer>
         </div>
@@ -332,7 +332,7 @@
             </aside>
             
             <aside class="page_number">
-              7/27
+              7/28
             </aside>
           </footer>
         </div>
@@ -378,7 +378,7 @@
             </aside>
             
             <aside class="page_number">
-              8/27
+              8/28
             </aside>
           </footer>
         </div>
@@ -416,7 +416,7 @@
             </aside>
             
             <aside class="page_number">
-              9/27
+              9/28
             </aside>
           </footer>
         </div>
@@ -444,7 +444,7 @@
             </aside>
             
             <aside class="page_number">
-              10/27
+              10/28
             </aside>
           </footer>
         </div>
@@ -472,7 +472,7 @@
             </aside>
             
             <aside class="page_number">
-              11/27
+              11/28
             </aside>
           </footer>
         </div>
@@ -512,7 +512,7 @@
             </aside>
             
             <aside class="page_number">
-              12/27
+              12/28
             </aside>
           </footer>
         </div>
@@ -558,7 +558,7 @@
             </aside>
             
             <aside class="page_number">
-              13/27
+              13/28
             </aside>
           </footer>
         </div>
@@ -586,7 +586,7 @@
             </aside>
             
             <aside class="page_number">
-              14/27
+              14/28
             </aside>
           </footer>
         </div>
@@ -632,7 +632,7 @@ z argumentami <code>name</code> i <code>bases</code> do stworzenia <code>body</c
             </aside>
             
             <aside class="page_number">
-              15/27
+              15/28
             </aside>
           </footer>
         </div>
@@ -687,7 +687,7 @@ algorytmu:</p>
             </aside>
             
             <aside class="page_number">
-              16/27
+              16/28
             </aside>
           </footer>
         </div>
@@ -728,7 +728,7 @@ algorytmu:</p>
             </aside>
             
             <aside class="page_number">
-              17/27
+              17/28
             </aside>
           </footer>
         </div>
@@ -773,7 +773,7 @@ zdefiniowane w ciele klasy są wkładane do słownika.</p>
             </aside>
             
             <aside class="page_number">
-              18/27
+              18/28
             </aside>
           </footer>
         </div>
@@ -792,26 +792,24 @@ zdefiniowane w ciele klasy są wkładane do słownika.</p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">DMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
-        <span class="c"># Wyciągnij definicję</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">BaseField</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="n">body</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="c"># opcjonalne</span>
-            <span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
             <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">field</span><span class="p">))</span>
         <span class="n">fields</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_creation_counter</span><span class="p">)</span>
 
-        <span class="n">cls</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+        <span class="n">cls</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DMeta</span><span class="p">,</span> <span class="n">mcls</span><span class="p">)</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
 
         <span class="c"># Zsumuj definicję</span>
         <span class="n">base_fields</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
-            <span class="n">base_fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="p">)</span>
+            <span class="n">base_fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
         <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">(</span><span class="n">base_fields</span> <span class="o">+</span> <span class="n">fields</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">contribute_to_class</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">field</span><span class="o">.</span><span class="n">contribute_to_class</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cls</span>
 </pre></div>
 
@@ -831,7 +829,7 @@ zdefiniowane w ciele klasy są wkładane do słownika.</p>
             </aside>
             
             <aside class="page_number">
-              19/27
+              19/28
             </aside>
           </footer>
         </div>
@@ -849,29 +847,28 @@ zdefiniowane w ciele klasy są wkładane do słownika.</p>
 
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">DMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
 
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
-
-        <span class="c"># Wyciągnij definicję</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">BaseField</span><span class="p">):</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="s">&quot;contribute_to_class&quot;</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="n">body</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="c"># opcjonalne</span>
-            <span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-            <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+            <span class="n">fields</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">field</span><span class="p">))</span>
 
         <span class="n">cls</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
 
         <span class="c"># Zsumuj definicję</span>
         <span class="n">base_fields</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
-            <span class="n">base_fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="p">)</span>
+            <span class="n">base_fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
         <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">(</span><span class="n">base_fields</span> <span class="o">+</span> <span class="n">fields</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">contribute_to_class</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">field</span><span class="o">.</span><span class="n">contribute_to_class</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cls</span>
 </pre></div>
 
@@ -891,7 +888,7 @@ zdefiniowane w ciele klasy są wkładane do słownika.</p>
             </aside>
             
             <aside class="page_number">
-              20/27
+              20/28
             </aside>
           </footer>
         </div>
@@ -931,7 +928,7 @@ nie zaśmiecając klasy.</p></section>
             </aside>
             
             <aside class="page_number">
-              21/27
+              21/28
             </aside>
           </footer>
         </div>
@@ -959,7 +956,7 @@ nie zaśmiecając klasy.</p></section>
             </aside>
             
             <aside class="page_number">
-              22/27
+              22/28
             </aside>
           </footer>
         </div>
@@ -987,7 +984,7 @@ nie zaśmiecając klasy.</p></section>
             </aside>
             
             <aside class="page_number">
-              23/27
+              23/28
             </aside>
           </footer>
         </div>
@@ -1040,7 +1037,7 @@ nie zaśmiecając klasy.</p></section>
             </aside>
             
             <aside class="page_number">
-              24/27
+              24/28
             </aside>
           </footer>
         </div>
@@ -1058,10 +1055,11 @@ nie zaśmiecając klasy.</p></section>
 
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">ExtMeta</span><span class="p">(</span><span class="n">DMeta</span><span class="p">):</span>
 
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
-
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__prepare__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">base</span><span class="o">.</span><span class="n">_fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">d</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">d</span>
 
@@ -1086,7 +1084,67 @@ nie zaśmiecając klasy.</p></section>
             </aside>
             
             <aside class="page_number">
-              25/27
+              25/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: dmc_pattern.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h2>Pozbyć się <code>Meta</code></h2></header>
+            
+            
+            <section><div class="scode">
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Options</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">base_options</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unique_tuples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">base_options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unique_tuples</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">unique_tuples</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_unique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unique_tuples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">OptsMeta</span><span class="p">(</span><span class="n">ExtMeta</span><span class="p">):</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__prepare__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">)</span>
+        <span class="n">d</span><span class="p">[</span><span class="s">&quot;Meta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Options</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">base</span><span class="o">.</span><span class="n">_options</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&quot;Meta&quot;</span><span class="p">)</span>
+        <span class="n">cls</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="k">return</span> <span class="n">cls</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">abstract</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">abstract</span> <span class="o">=</span> <span class="n">abstract</span>
+</pre></div>
+
+</div></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="dmc_pattern.md">dmc_pattern.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              26/28
             </aside>
           </footer>
         </div>
@@ -1102,19 +1160,17 @@ nie zaśmiecając klasy.</p></section>
             
             <section><div class="mcode">
 
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Options</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Field</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">contribute_to_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cls</span><span class="p">):</span>
+        <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">add_unique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">unique_tuples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">OptsMeta</span><span class="p">(</span><span class="n">ExtMeta</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Base</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">OptsMeta</span><span class="p">):</span>
+    <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
-        <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__prepare__</span><span class="p">(</span><span class="n">mcls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">)</span>
-        <span class="n">d</span><span class="p">[</span><span class="s">&quot;Meta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Options</span><span class="p">(</span><span class="n">bases</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">d</span>
-
-<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">OptsMeta</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">Base</span><span class="p">,</span> <span class="n">abstract</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
 
 <span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
@@ -1139,7 +1195,7 @@ nie zaśmiecając klasy.</p></section>
             </aside>
             
             <aside class="page_number">
-              26/27
+              27/28
             </aside>
           </footer>
         </div>
@@ -1167,7 +1223,7 @@ nie zaśmiecając klasy.</p></section>
             </aside>
             
             <aside class="page_number">
-              27/27
+              28/28
             </aside>
           </footer>
         </div>
@@ -1334,11 +1390,16 @@ nie zaśmiecając klasy.</p></section>
           <td><a href="#slide26">26</a></td>
         </tr>
         
+        <tr id="toc-row-27" class="sub">
+          <th><a href="#slide27">Pozbyć się <code>Meta</code></a></th>
+          <td><a href="#slide27">27</a></td>
+        </tr>
+        
       
       
-      <tr id="toc-row-27">
-        <th><a href="#slide27">Pomysły ?</a></th>
-        <td><a href="#slide27">27</a></td>
+      <tr id="toc-row-28">
+        <th><a href="#slide28">Pomysły ?</a></th>
+        <td><a href="#slide28">28</a></td>
       </tr>
       
       
